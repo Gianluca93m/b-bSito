@@ -33,18 +33,19 @@ export default function Gallery() {
           <h2 className="section-title">Galleria</h2>
           <p className="section-subtitle">Scopri gli spazi e le camere del nostro B&B</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {galleryImages.map((img, i) => (
             <button
               key={img.src}
               onClick={() => { setActiveIndex(i); setLightboxOpen(true); }}
-              className="relative group rounded-lg overflow-hidden shadow-lg border border-[#ececec] p-0 block h-80"
+              className="relative group rounded-xl overflow-hidden shadow-md border border-[#ececec] p-0 block h-80 hover:shadow-xl transition-all duration-300"
               aria-label={`Apri immagine ${img.alt}`}
             >
               <div className="relative w-full h-full">
-                <Image src={img.src} alt={img.alt} fill className="object-cover w-full h-full transform group-hover:scale-102 transition" loading="lazy" unoptimized placeholder="empty" />
+                <Image src={img.src} alt={img.alt} fill className="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500" loading="lazy" unoptimized placeholder="empty" />
               </div>
-              <span className="absolute bottom-4 left-4 bg-[#bfae82] text-white text-sm px-3 py-1 rounded-md shadow">{img.alt}</span>
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+              <span className="absolute bottom-4 left-4 bg-[#bfae82] text-white text-sm font-semibold px-3 py-1.5 rounded-full shadow-lg">{img.alt}</span>
             </button>
           ))}
         </div>
