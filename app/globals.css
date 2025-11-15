@@ -202,8 +202,17 @@ h1,h2,h3,h4,h5 { font-family: 'Playfair Display', Georgia, Cambria, 'Times New R
 }
 
 .carousel-item.is-active {
-  transform: scale(1.04);
-  box-shadow: 0 24px 48px rgba(39,64,43,0.12);
+  transform: scale(1.05);
+  box-shadow: 0 28px 56px rgba(39,64,43,0.15);
+}
+
+.carousel-item {
+  border-radius: 0.875rem;
+  overflow: hidden;
+}
+
+.carousel-item:hover {
+  box-shadow: 0 20px 48px rgba(39,64,43,0.1);
 }
 
 @media (min-width: 768px) {
