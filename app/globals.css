@@ -201,3 +201,55 @@ h1,h2,h3,h4,h5 { font-family: 'Playfair Display', Georgia, Cambria, 'Times New R
   border-radius: 0.6rem;
 }
 
+/* Testimonials styling */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .testimonial-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.testimonial-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf6 100%);
+  border: 1px solid var(--muted-400);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 12px 30px rgba(39,64,43,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.testimonial-header { display:flex; gap:0.75rem; align-items:center }
+.testimonial-avatar { width:56px; height:56px; border-radius:9999px; object-fit:cover; border:1px solid var(--muted-400); box-shadow:0 8px 18px rgba(39,64,43,0.06) }
+.testimonial-name { color:var(--olive-700); font-weight:700 }
+.testimonial-source { color:var(--gold-500); font-size:0.875rem }
+.testimonial-stars { color:var(--gold-500); font-size:1.1rem }
+.testimonial-quote { color:var(--olive-700); font-style:italic; line-height:1.5; margin-top:0.25rem }
+.testimonial-cta { margin-top:0.5rem }
+
+/* Reveal animation for testimonials */
+.testimonial-card {
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform 520ms cubic-bezier(.22,.9,.36,1), opacity 420ms ease;
+}
+.testimonial-card.in-view {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Utility for screen-reader only text */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+

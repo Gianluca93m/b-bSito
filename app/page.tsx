@@ -99,6 +99,65 @@ export default function Home() {
   const [isPaused, setIsPaused] = useState(false)
   const [visibleCount, setVisibleCount] = useState(1)
 
+  // Testimonials data — renderable and easy to extend. If you want to
+  // load these from an API later, replace this static array with a fetch.
+  const testimonials = [
+    {
+      id: 1,
+      name: 'Giulia R.',
+      source: 'Booking.com',
+      date: '12/10/2025',
+      avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
+      rating: 5,
+      text: 'Esperienza fantastica! Camere pulite, colazione abbondante e staff gentilissimo. Torneremo sicuramente.'
+    },
+    {
+      id: 2,
+      name: 'Marco P.',
+      source: 'Google',
+      date: '05/09/2025',
+      avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+      rating: 5,
+      text: 'Location perfetta per rilassarsi. Piscina e spa top. Consigliato!'
+    },
+    {
+      id: 3,
+      name: 'Laura B.',
+      source: 'Tripadvisor',
+      date: '22/08/2025',
+      avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
+      rating: 5,
+      text: 'Colazione eccellente e posizione comoda. Staff disponibile e gentile.'
+    },
+    {
+      id: 4,
+      name: 'Luca M.',
+      source: 'Direct',
+      date: '10/07/2025',
+      avatar: 'https://randomuser.me/api/portraits/men/76.jpg',
+      rating: 5,
+      text: 'Stanze spaziose e pulite. Torneremo in estate per rilassarci ancora.'
+    },
+    {
+      id: 5,
+      name: 'Anna S.',
+      source: 'Booking.com',
+      date: '28/06/2025',
+      avatar: 'https://randomuser.me/api/portraits/women/12.jpg',
+      rating: 5,
+      text: 'Ottima esperienza per famiglie, bimbi entusiasti e area giochi vicina.'
+    },
+    {
+      id: 6,
+      name: 'Paolo R.',
+      source: 'Google',
+      date: '15/05/2025',
+      avatar: 'https://randomuser.me/api/portraits/men/15.jpg',
+      rating: 5,
+      text: 'Perfetto per un weekend romantico. Colazione in terrazza magnifica.'
+    }
+  ]
+
   // update visibleCount on resize (1 / 2 / 3 depending on width)
   useEffect(() => {
     function update() {
@@ -145,6 +204,37 @@ export default function Home() {
     const maxIndex = Math.max(0, packagesList.length - visibleCount)
     setCarouselIndex((i) => (i > maxIndex ? maxIndex : i))
   }, [visibleCount, packagesList.length])
+
+  // Reveal animation for testimonials: use IntersectionObserver to add an
+  // "in-view" class when testimonial cards scroll into viewport. This
+  // keeps the markup simple and avoids extra dependencies.
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return
+    const cards = Array.from(document.querySelectorAll('.testimonial-card')) as HTMLElement[]
+    if (!cards.length) return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target as HTMLElement
+          if (entry.isIntersecting) el.classList.add('in-view')
+          else el.classList.remove('in-view')
+        })
+      },
+      { threshold: 0.12 }
+    )
+
+    // Immediately mark cards that are already inside the viewport as in-view
+    // This prevents the case where only the first card gets observed as visible
+    // and the rest remain hidden until scroll/resize.
+    const winH = window.innerHeight || document.documentElement.clientHeight
+    cards.forEach((c) => {
+      const r = c.getBoundingClientRect()
+      if (r.top < winH && r.bottom > 0) c.classList.add('in-view')
+      obs.observe(c)
+    })
+
+    return () => obs.disconnect()
+  }, [])
 
   return (
     <div className="w-full min-h-screen bg-[#f7f7f7]">
@@ -301,40 +391,32 @@ export default function Home() {
         {/* Recensioni */}
         <section className="w-full max-w-6xl mx-auto mb-20">
           <h2 className="text-4xl font-extrabold text-[#4d5c3a] mb-10 text-center">Cosa dicono di noi</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* Testimonial: Giulia R. */}
-            <article className="card p-6 flex flex-col gap-4">
-              <div className="flex items-center gap-4">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Giulia R." className="rounded-full w-20 h-20 border border-[#ececec] shadow-lg" />
-                <div>
-                  <div className="font-bold text-[#4d5c3a] text-lg">Giulia R.</div>
-                  <div className="text-sm text-[#bfae82]">Booking.com · 12/10/2025</div>
+          {/* ============================ */}
+          {/* Testimonials / "Cosa dicono di noi" */}
+          {/* Structured for accessibility and easy styling. Each testimonial is
+              an article (role=article) with a visible avatar, name/source/date,
+              a star rating (visual only) and the quoted text. */}
+          <div className="testimonial-grid">
+            {/* Render testimonials dynamically from the testimonials array */}
+            {testimonials.map((t) => (
+              <article key={t.id} role="article" aria-label={`Recensione di ${t.name}`} className="testimonial-card">
+                <div className="testimonial-header">
+                  <img className="testimonial-avatar" src={t.avatar} alt={`Avatar ${t.name}`} />
+                  <div>
+                    <div className="testimonial-name">{t.name}</div>
+                    <div className="testimonial-source">{t.source} · {t.date}</div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-1" aria-hidden>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <span key={i} className="text-[#bfae82] text-xl">★</span>
-                ))}
-              </div>
-              <p className="text-[#4d5c3a] text-lg">Esperienza fantastica! Camere pulite, colazione abbondante e staff gentilissimo. Torneremo sicuramente.</p>
-            </article>
 
-            {/* Testimonial: Marco P. */}
-            <article className="card p-6 flex flex-col gap-4">
-              <div className="flex items-center gap-4">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marco P." className="rounded-full w-20 h-20 border border-[#ececec] shadow-lg" />
-                <div>
-                  <div className="font-bold text-[#4d5c3a] text-lg">Marco P.</div>
-                  <div className="text-sm text-[#bfae82]">Google · 05/09/2025</div>
+                <div className="testimonial-stars" aria-hidden>
+                  {Array.from({ length: t.rating }).map((_, i) => (<span key={i}>★</span>))}
                 </div>
-              </div>
-              <div className="flex items-center gap-1" aria-hidden>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <span key={i} className="text-[#bfae82] text-xl">★</span>
-                ))}
-              </div>
-              <p className="text-[#4d5c3a] text-lg">Location perfetta per rilassarsi. Piscina e spa top. Consigliato!</p>
-            </article>
+                {/* Numeric rating for screen readers */}
+                <span className="sr-only">{t.rating} su 5 stelle</span>
+
+                <p className="testimonial-quote">{t.text}</p>
+              </article>
+            ))}
           </div>
           <div className="mt-8 text-center">
             <a href="#" className="inline-block group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary font-bold px-8 py-3 rounded-full shadow-lg transition text-lg">
