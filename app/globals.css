@@ -143,30 +143,55 @@ h1,h2,h3,h4,h5 { font-family: 'Playfair Display', Georgia, Cambria, 'Times New R
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  padding: 3rem 0;
+  padding: 2rem 0 2.5rem;
   background: linear-gradient(180deg, #ffffff 0%, #f9f8f5 100%);
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .carousel-bleed {
+    padding: 3rem 0;
+    margin-top: 2rem;
+  }
 }
 
 .carousel-wrapper {
   width: 100%;
   max-width: 100%;
   margin: 0;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .carousel-wrapper {
+    padding: 0 1.5rem;
+  }
 }
 
 .carousel-track {
   display: block;
   overflow: hidden;
-  padding: 0 1.5rem;
+  padding: 0 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .carousel-track {
+    padding: 0 1.5rem;
+  }
 }
 
 .carousel-track-inner {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   scroll-behavior: smooth;
   transition: transform 600ms cubic-bezier(.22,.9,.36,1);
   will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .carousel-track-inner {
+    gap: 1.5rem;
+  }
 }
 
 .carousel-item {
