@@ -1,8 +1,17 @@
+/* Professional fonts for headings and body - must be imported before other rules */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Brand palette */
+  --olive-900: #27402b;
+  --olive-700: #4d5c3a;
+  --gold-500: #bfae82;
+  --gold-600: #a88f5f;
+  --muted-400: #ececec;
 }
 
 @theme inline {
@@ -22,5 +31,173 @@
 body {
   background: #fff !important;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
+
+/* Headings use a more elegant serif */
+h1,h2,h3,h4,h5 { font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif; }
+
+/* Reusable card/button utilities to apply subtle, consistent styling across the homepage */
+.card {
+  background: white;
+  border-radius: 1rem; /* reduced, modern radius */
+  box-shadow: 0 6px 18px rgba(39,64,43,0.06);
+  border: 1px solid var(--muted-400);
+}
+
+.btn-primary {
+  background: var(--gold-500);
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.soft-shadow {
+  box-shadow: 0 8px 24px rgba(39,64,43,0.06);
+}
+
+.tilt-hover {
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.tilt-hover:hover {
+  transform: perspective(800px) rotateX(2deg) rotateY(-2deg) translateY(-6px);
+  box-shadow: 0 20px 40px rgba(39,64,43,0.08);
+}
+
+.rounded-smaller { border-radius: 0.6rem; }
+
+/* Utilities to use CSS variables from Tailwind classes via inline style if needed */
+.text-olive { color: var(--olive-900); }
+.bg-olive { background: var(--olive-700); }
+.text-gold { color: var(--gold-500); }
+.bg-gold { background: var(--gold-500); }
+
+/* Highlights / badge utilities */
+.highlight-card {
+  border-radius: 1rem;
+  padding: 1.25rem;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf6 100%);
+  border: 1px solid var(--muted-400);
+  box-shadow: 0 10px 30px rgba(39,64,43,0.04);
+}
+.badge-circle {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--olive-700);
+  color: white;
+  box-shadow: 0 8px 20px rgba(39,64,43,0.06);
+}
+.badge-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--gold-500);
+}
+
+.high-title {
+  color: var(--olive-700);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.high-desc {
+  color: #55664a;
+}
+
+/* Carousel styles for full-width pacchetti */
+.carousel-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2rem 0;
+  background: transparent;
+}
+.carousel-wrapper {
+  /* make wrapper span full available width so carousel feels truly full-bleed
+     keep internal padding via track so controls align with content */
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.carousel-track {
+  display: flex;
+  gap: 1.25rem;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  padding: 0 1.5rem; /* spacing from viewport edges */
+}
+.carousel-track {
+  display: flex;
+  gap: 1.25rem;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+.carousel-item {
+  flex: 0 0 auto;
+  width: 260px; /* default item width */
+}
+
+@media (min-width: 768px) {
+  .carousel-item { width: 320px; }
+}
+@media (min-width: 1024px) {
+  .carousel-item { width: 360px; }
+}
+
+.carousel-track {
+  display: block; /* outer viewport - hides overflow */
+  overflow: hidden;
+  padding: 0 1.5rem; /* spacing from viewport edges */
+}
+.carousel-track-inner {
+  display: flex;
+  gap: 1.25rem;
+  scroll-behavior: smooth;
+  transition: transform 600ms cubic-bezier(.22,.9,.36,1);
+  will-change: transform;
+}
+.carousel-item {
+  /* default: one-per-view on small screens */
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.carousel-item {
+  transition: transform 420ms cubic-bezier(.22,.9,.36,1), box-shadow 420ms cubic-bezier(.22,.9,.36,1);
+}
+.carousel-item.is-active {
+  transform: scale(1.035);
+  box-shadow: 0 22px 44px rgba(39,64,43,0.08);
+}
+
+/* two items on medium screens */
+@media (min-width: 768px) {
+  .carousel-item { flex: 0 0 calc((100% - 1.25rem) / 2); max-width: calc((100% - 1.25rem) / 2); }
+}
+
+/* three items on large screens */
+@media (min-width: 1024px) {
+  /* subtract total gap between 3 items (2 * gap) */
+  .carousel-item { flex: 0 0 calc((100% - 2.5rem) / 3); max-width: calc((100% - 2.5rem) / 3); }
+}
+
+/* Hero title shadow to keep text readable when background overlay is removed */
+.hero-title {
+  text-shadow: 0 8px 32px rgba(0,0,0,0.55);
+}
+
+/* Semi-opaque hero panel to improve readability while keeping background visible */
+.hero-panel {
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 0.6rem;
+}
+

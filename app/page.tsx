@@ -4,7 +4,7 @@ import Banner from "./Banner";
 import DateFilterWidget from "./DateFilterWidget";
 import Gallery from "./components/Gallery";
 import Newsletter from "./components/Newsletter";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -84,6 +84,68 @@ export default function Home() {
 
   // Keyboard navigation for gallery lightbox is handled inside `Gallery` component
 
+  // Carousel state for Pacchetti promozionali (full-width)
+  const packagesList = Array.from({ length: 12 }).map((_, i) => ({
+    id: i + 1,
+    title: `Pacchetto ${i + 1}`,
+    price: `${80 + (i % 5) * 20}€`,
+    nights: 2 + (i % 3),
+    desc: 'Camera confortevole, colazione inclusa, parcheggio',
+  }))
+
+  const trackRef = useRef<HTMLDivElement | null>(null)
+  const innerRef = useRef<HTMLDivElement | null>(null)
+  const [carouselIndex, setCarouselIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(1)
+
+  // update visibleCount on resize (1 / 2 / 3 depending on width)
+  useEffect(() => {
+    function update() {
+      const w = window.innerWidth
+      if (w >= 1024) setVisibleCount(3)
+      else if (w >= 768) setVisibleCount(2)
+      else setVisibleCount(1)
+    }
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
+
+  useEffect(() => {
+    if (isPaused) return
+    const id = setInterval(() => {
+      setCarouselIndex((c) => {
+        const maxIndex = Math.max(0, packagesList.length - visibleCount)
+        return c + 1 <= maxIndex ? c + 1 : 0
+      })
+    }, 2000)
+    return () => clearInterval(id)
+  }, [isPaused, packagesList.length, visibleCount])
+
+  // scroll track to the active item when index changes
+  useEffect(() => {
+    const track = trackRef.current
+    const inner = innerRef.current
+    if (!track || !inner) return
+    const items = Array.from(inner.querySelectorAll('.carousel-item')) as HTMLElement[]
+    const target = items[carouselIndex]
+    if (!target) return
+    // Calculate desired translate so the target item is centered inside track viewport
+    const trackWidth = track.clientWidth
+    const targetCenter = target.offsetLeft + target.clientWidth / 2
+    const desired = Math.round(targetCenter - trackWidth / 2)
+    const maxTranslate = Math.max(0, inner.scrollWidth - trackWidth)
+    const clamped = Math.max(0, Math.min(desired, maxTranslate))
+    inner.style.transform = `translateX(-${clamped}px)`
+  }, [carouselIndex, visibleCount])
+
+  // When visibleCount changes, ensure index is within valid bounds
+  useEffect(() => {
+    const maxIndex = Math.max(0, packagesList.length - visibleCount)
+    setCarouselIndex((i) => (i > maxIndex ? maxIndex : i))
+  }, [visibleCount, packagesList.length])
+
   return (
     <div className="w-full min-h-screen bg-[#f7f7f7]">
       {/* Navbar */}
@@ -121,9 +183,9 @@ export default function Home() {
       {/* Hero con ricerca */}
       <main className="pt-32 pb-12 px-4 flex flex-col items-center min-h-screen font-sans">
         {/* Hero con ricerca */}
-        <section className="w-full flex flex-col items-center justify-center py-20 bg-cover bg-center rounded-lg shadow-lg border border-[#ececec] mb-12" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80)'}}>
-          <div className="bg-white bg-opacity-85 rounded-md px-8 py-10 shadow-md max-w-2xl w-full text-center">
-            <h1 className="text-5xl md:text-6xl font-extrabold text-[#4d5c3a] mb-6 tracking-tight">Trova il tuo B&B ideale</h1>
+        <section className="w-full flex flex-col items-center justify-center py-20 bg-cover bg-center rounded-lg shadow-lg border border-[#ececec] mb-12" style={{backgroundImage: 'url(https://www.turismovieste.it/index/wp-content/uploads/2024/02/ostunialtramonto.jpg)'}}>
+          <div className="rounded-md px-8 py-10 shadow-md max-w-2xl w-full text-center hero-panel">
+            <h1 className="text-5xl md:text-6xl font-extrabold text-[#4d5c3a] mb-6 tracking-tight hero-title">Per un soggiorno da favola a Ostuni</h1>
             <form className="flex flex-row flex-wrap items-center justify-center gap-6 bg-[#f7f7f7] rounded-xl shadow px-8 py-6 border border-[#ececec] max-w-2xl w-full mx-auto">
               <div className="flex flex-col items-start w-40">
                 <label htmlFor="checkin" className="text-xs font-semibold text-[#4d5c3a] mb-1 ml-1">Check-in</label>
@@ -137,7 +199,7 @@ export default function Home() {
                 <label htmlFor="guests" className="text-xs font-semibold text-[#4d5c3a] mb-1 ml-1">Ospiti</label>
                 <input type="number" id="guests" name="guests" min="1" max="10" className="bg-white px-3 py-2 text-[#4d5c3a] text-lg rounded border border-[#ececec] focus:outline-none w-full" placeholder="2" />
               </div>
-              <button type="submit" className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 bg-[#bfae82] text-white font-bold px-8 py-3 rounded-xl shadow hover:bg-[#4d5c3a] transition text-lg">
+              <button type="submit" className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary font-bold px-8 py-3 rounded-xl shadow transition text-lg">
                 <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Cerca</span>
               </button>
             </form>
@@ -147,99 +209,87 @@ export default function Home() {
         {/* Highlights / Trust badges */}
         <section className="w-full max-w-7xl mx-auto mb-12 px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="flex items-start gap-4 p-6 bg-white rounded-lg border border-[#ececec] shadow-lg">
-              <div className="text-3xl text-[#bfae82]">✅</div>
-              <div>
-                <h4 className="font-semibold text-[#4d5c3a]">Best price guarantee</h4>
-                <p className="text-sm text-[#55664a]">Prenota qui per il miglior prezzo disponibile.</p>
+            <div className="highlight-card tilt-hover flex flex-col items-center text-center gap-4">
+              <div className="badge-circle">
+                {/* tag icon */}
+                <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <path d="M21 11.5L12 2 2 12l9 9 10-9.5zM11 7a2 2 0 110-4 2 2 0 010 4z" />
+                </svg>
               </div>
+              <h4 className="high-title text-lg">Best price guarantee</h4>
+              <p className="high-desc text-sm">Prenota qui per il miglior prezzo disponibile.</p>
             </div>
-            <div className="flex items-start gap-4 p-6 bg-white rounded-lg border border-[#ececec] shadow-lg">
-              <div className="text-3xl text-[#bfae82]">🔁</div>
-              <div>
-                <h4 className="font-semibold text-[#4d5c3a]">Free cancellation</h4>
-                <p className="text-sm text-[#55664a]">Cancellazione gratuita fino a 48 ore prima.</p>
+            <div className="highlight-card tilt-hover flex flex-col items-center text-center gap-4">
+              <div className="badge-circle">
+                {/* refresh icon */}
+                <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <path d="M12 6V3L8 7l4 4V8c2.761 0 5 2.239 5 5 0 .637-.113 1.244-.318 1.797l1.518 1.518C18.83 15.079 19 14.061 19 13c0-3.866-3.134-7-7-7zM6.318 5.683L4.8 4.165C3.17 5.794 2 8.255 2 11c0 3.866 3.134 7 7 7v3l4-4-4-4v3c-2.761 0-5-2.239-5-5 0-.637.113-1.244.318-1.797z" />
+                </svg>
               </div>
+              <h4 className="high-title text-lg">Free cancellation</h4>
+              <p className="high-desc text-sm">Cancellazione gratuita fino a 48 ore prima.</p>
             </div>
-            <div className="flex items-start gap-4 p-6 bg-white rounded-lg border border-[#ececec] shadow-lg">
-              <div className="text-3xl text-[#bfae82]">🏆</div>
-              <div>
-                <h4 className="font-semibold text-[#4d5c3a]">Family & pet friendly</h4>
-                <p className="text-sm text-[#55664a]">Offerte e servizi pensati per famiglie e animali.</p>
+            <div className="highlight-card tilt-hover flex flex-col items-center text-center gap-4">
+              <div className="badge-circle">
+                {/* family/paw icon */}
+                <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <path d="M12 2c1.657 0 3 1.79 3 4s-1.343 4-3 4-3-1.79-3-4 1.343-4 3-4zm6.5 6c1.38 0 2.5 1.343 2.5 3s-1.12 3-2.5 3-2.5-1.343-2.5-3 1.12-3 2.5-3zM5.5 8c1.38 0 2.5 1.343 2.5 3S6.88 14 5.5 14 3 12.657 3 11s1.12-3 2.5-3zM12 10c3.866 0 7 3.134 7 7 0 0-3 3-7 3s-7-3-7-3c0-3.866 3.134-7 7-7z" />
+                </svg>
               </div>
+              <h4 className="high-title text-lg">Family & pet friendly</h4>
+              <p className="high-desc text-sm">Offerte e servizi pensati per famiglie e animali.</p>
             </div>
           </div>
         </section>
 
-        {/* Pacchetti promozionali */}
-  <section id="pacchetti" className="w-full max-w-7xl mx-auto mb-20">
-          <h2 className="text-4xl font-extrabold text-[#4d5c3a] mb-10 text-center">Pacchetti promozionali</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Card esempio con badge, countdown, dettagli, pulsante */}
-            <div className="relative bg-white rounded-lg shadow-lg border border-[#ececec] p-0 flex flex-col overflow-hidden min-h-[480px]">
-              <div className="w-full h-64 relative">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Weekend Relax" className="object-cover w-full h-full" />
-                <span className="absolute top-6 right-6 bg-[#bfae82] text-white text-sm font-semibold px-4 py-1 rounded-md animate-pulse shadow">Offerta</span>
-              </div>
-              <div className="p-6 flex flex-col gap-4">
-                <h3 className="text-2xl font-semibold text-[#4d5c3a]">Weekend Relax</h3>
-                <ul className="text-[#4d5c3a] text-lg mb-2 list-disc ml-6">
-                  <li>2 notti in camera matrimoniale</li>
-                  <li>Colazione inclusa</li>
-                  <li>Accesso Spa</li>
-                  <li>Late check-out</li>
-                </ul>
-                <div className="flex items-center gap-3">
-                  <span className="bg-[#bfae82] text-white px-4 py-2 rounded font-bold text-lg">€149</span>
-                  <span className="text-base text-[#bfae82]">Solo per questo weekend!</span>
-                </div>
-                <button className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 bg-[#bfae82] text-white font-semibold px-6 py-2 rounded-md shadow hover:bg-[#4d5c3a] transition text-base">
-                  <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Dettagli</span>
-                </button>
-              </div>
+        {/* Pacchetti - full width carousel */}
+        <section id="pacchetti" className="carousel-bleed">
+          <div className="carousel-wrapper">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl md:text-3xl font-semibold">Pacchetti promozionali</h2>
+              <p className="text-sm text-gray-600">Offerte pensate per te — scorri per vedere tutte le stanze</p>
             </div>
-            <div className="relative bg-white rounded-lg shadow-lg border border-[#ececec] p-0 flex flex-col overflow-hidden min-h-[480px]">
-              <div className="w-full h-64 relative">
-                <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" alt="Settimana Family" className="object-cover w-full h-full" />
-                <span className="absolute top-6 right-6 bg-[#bfae82] text-white text-sm font-semibold px-4 py-1 rounded-md animate-pulse shadow">Offerta</span>
-              </div>
-              <div className="p-6 flex flex-col gap-4">
-                <h3 className="text-2xl font-semibold text-[#4d5c3a]">Settimana Family</h3>
-                <ul className="text-[#4d5c3a] text-lg mb-2 list-disc ml-6">
-                  <li>7 notti in appartamento</li>
-                  <li>Colazione e cena</li>
-                  <li>Escursione guidata</li>
-                  <li>Bambini gratis fino a 6 anni</li>
-                </ul>
-                <div className="flex items-center gap-3">
-                  <span className="bg-[#bfae82] text-white px-4 py-2 rounded font-bold text-lg">€599</span>
-                  <span className="text-base text-[#bfae82]">Prenota entro 30/11!</span>
+
+            <div
+              className="relative"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              <div ref={trackRef} className="carousel-track">
+                <div ref={innerRef} className="carousel-track-inner">
+                {packagesList.map((p, idx) => {
+                  const centerIndex = carouselIndex + Math.floor(visibleCount / 2)
+                  const isActive = idx === centerIndex
+                  return (
+                    <article key={p.id} className={`carousel-item relative card p-0 flex flex-col overflow-hidden min-h-[480px] ${isActive ? 'is-active' : ''}`}>
+                    <div className="w-full h-48 relative">
+                      <img src={`https://picsum.photos/seed/pacchetto-${p.id}/900/600`} alt={p.title} className="object-cover w-full h-full" />
+                      <span className="absolute top-4 right-4 bg-[#bfae82] text-white text-sm font-semibold px-4 py-1 rounded-md animate-pulse shadow">Offerta</span>
+                    </div>
+                    <div className="p-6 flex flex-col gap-4">
+                      <h3 className="text-2xl font-semibold text-[#4d5c3a]">{p.title}</h3>
+                      <ul className="text-[#4d5c3a] text-lg mb-2 list-disc ml-6">
+                        <li>Notte confortevole</li>
+                        <li>Colazione inclusa</li>
+                        <li>Servizi dedicati</li>
+                      </ul>
+                      <div className="flex items-center gap-3">
+                        <span className="inline-flex btn-primary px-4 py-2 rounded font-bold text-lg">{p.price}</span>
+                        <span className="text-base text-[#bfae82]">Offerta limitata</span>
+                      </div>
+                      <button className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary font-semibold px-6 py-2 rounded-md shadow transition text-base">
+                        <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Dettagli</span>
+                      </button>
+                    </div>
+                    </article>
+                  )
+                })}
                 </div>
-                <button className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 bg-[#bfae82] text-white font-semibold px-6 py-2 rounded-md shadow hover:bg-[#4d5c3a] transition text-base">
-                  <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Dettagli</span>
-                </button>
               </div>
-            </div>
-            <div className="relative bg-white rounded-lg shadow-lg border border-[#ececec] p-0 flex flex-col overflow-hidden min-h-[480px]">
-              <div className="w-full h-64 relative">
-                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Romantic Escape" className="object-cover w-full h-full" />
-                <span className="absolute top-6 right-6 bg-[#bfae82] text-white text-sm font-semibold px-4 py-1 rounded-md animate-pulse shadow">Offerta</span>
-              </div>
-              <div className="p-6 flex flex-col gap-4">
-                <h3 className="text-2xl font-semibold text-[#4d5c3a]">Romantic Escape</h3>
-                <ul className="text-[#4d5c3a] text-lg mb-2 list-disc ml-6">
-                  <li>1 notte in suite</li>
-                  <li>Prosecco di benvenuto</li>
-                  <li>Colazione in camera</li>
-                  <li>Massaggio di coppia</li>
-                </ul>
-                <div className="flex items-center gap-3">
-                  <span className="bg-[#bfae82] text-white px-4 py-2 rounded font-bold text-lg">€199</span>
-                  <span className="text-base text-[#bfae82]">Solo 5 disponibili!</span>
-                </div>
-                <button className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 bg-[#bfae82] text-white font-semibold px-6 py-2 rounded-md shadow hover:bg-[#4d5c3a] transition text-base">
-                  <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Dettagli</span>
-                </button>
+
+              <div className="carousel-controls" aria-hidden>
+                <button onClick={() => setCarouselIndex((i) => (i - 1 + packagesList.length) % packagesList.length)} aria-label="Previous">◀</button>
+                <button onClick={() => setCarouselIndex((i) => (i + 1) % packagesList.length)} aria-label="Next">▶</button>
               </div>
             </div>
           </div>
@@ -252,7 +302,7 @@ export default function Home() {
         <section className="w-full max-w-6xl mx-auto mb-20">
           <h2 className="text-4xl font-extrabold text-[#4d5c3a] mb-10 text-center">Cosa dicono di noi</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="bg-white rounded-lg shadow-lg border border-[#ececec] p-0 flex flex-col overflow-hidden min-h-[260px]">
+            <div className="card p-0 flex flex-col overflow-hidden min-h-[260px]">
               <div className="flex items-center gap-6 p-8 pb-0">
                 <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="avatar" className="rounded-full w-20 h-20 border border-[#ececec] shadow-lg" />
                 <div>
@@ -263,7 +313,7 @@ export default function Home() {
               <div className="flex gap-1 px-8 mb-2">{'★★★★★'.split('').map((s,i)=>(<span key={i} className="text-[#bfae82] text-xl">★</span>))}</div>
               <p className="text-[#4d5c3a] px-8 pb-8 text-lg">Esperienza fantastica! Camere pulite, colazione abbondante e staff gentilissimo. Torneremo sicuramente.</p>
             </div>
-            <div className="bg-white rounded-lg shadow-lg border border-[#ececec] p-0 flex flex-col overflow-hidden min-h-[260px]">
+            <div className="card p-0 flex flex-col overflow-hidden min-h-[260px]">
               <div className="flex items-center gap-6 p-8 pb-0">
                 <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar" className="rounded-full w-20 h-20 border border-[#ececec] shadow-lg" />
                 <div>
@@ -276,7 +326,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-8 text-center">
-            <a href="#" className="inline-block group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 bg-[#bfae82] text-white font-bold px-8 py-3 rounded-full shadow-lg hover:bg-[#4d5c3a] transition text-lg">
+            <a href="#" className="inline-block group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary font-bold px-8 py-3 rounded-full shadow-lg transition text-lg">
               <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Leggi tutte</span>
             </a>
           </div>
@@ -288,20 +338,20 @@ export default function Home() {
         {/* Staff */}
         <section className="w-full max-w-6xl mx-auto mb-20">
           <h2 className="text-4xl font-extrabold text-[#4d5c3a] mb-10 text-center">Chi siamo</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
-          <div className="flex flex-col items-center bg-white rounded-lg shadow-lg border border-[#ececec] p-8 min-h-[300px]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
+          <div className="card p-8 flex flex-col items-center min-h-[300px]">
               <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Staff" className="rounded-full w-28 h-28 border border-[#ececec] shadow-lg mb-4" />
               <span className="font-bold text-[#4d5c3a] text-2xl">Anna</span>
               <span className="text-base text-[#bfae82] mb-2">Proprietaria</span>
               <p className="text-[#4d5c3a] text-lg text-center">Accoglienza e cura degli ospiti sono la sua passione.</p>
             </div>
-            <div className="flex flex-col items-center bg-white rounded-lg shadow-lg border border-[#ececec] p-8 min-h-[300px]">
+            <div className="card p-8 flex flex-col items-center min-h-[300px]">
               <img src="https://randomuser.me/api/portraits/men/43.jpg" alt="Staff" className="rounded-full w-28 h-28 border border-[#ececec] shadow-lg mb-4" />
               <span className="font-bold text-[#4d5c3a] text-2xl">Luca</span>
               <span className="text-base text-[#bfae82] mb-2">Chef</span>
               <p className="text-[#4d5c3a] text-lg text-center">Specialità pugliesi e colazioni indimenticabili.</p>
             </div>
-            <div className="flex flex-col items-center bg-white rounded-lg shadow-lg border border-[#ececec] p-8 min-h-[300px]">
+            <div className="card p-8 flex flex-col items-center min-h-[300px]">
               <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Staff" className="rounded-full w-28 h-28 border border-[#ececec] shadow-lg mb-4" />
               <span className="font-bold text-[#4d5c3a] text-2xl">Sara</span>
               <span className="text-base text-[#bfae82] mb-2">Reception</span>
@@ -314,42 +364,42 @@ export default function Home() {
         <section className="w-full max-w-6xl mx-auto mb-20">
           <h2 className="text-4xl font-extrabold text-[#4d5c3a] mb-10 text-center">I nostri servizi</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
-            <div className="flex flex-col items-center gap-4 bg-white rounded-lg shadow-lg border border-[#ececec] p-8 min-h-[180px]">
+            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
               <span className="text-4xl text-[#bfae82]">📶</span>
               <span className="font-bold text-[#4d5c3a] text-xl">WiFi</span>
               <span className="text-base text-[#4d5c3a]">Connessione veloce gratuita</span>
             </div>
-            <div className="flex flex-col items-center gap-4 bg-white rounded-lg shadow-lg border border-[#ececec] p-8 min-h-[180px]">
+            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
               <span className="text-4xl text-[#bfae82]">🚗</span>
               <span className="font-bold text-[#4d5c3a] text-xl">Parcheggio</span>
               <span className="text-base text-[#4d5c3a]">Privato e videosorvegliato</span>
             </div>
-            <div className="flex flex-col items-center gap-4 bg-white rounded-lg shadow-lg border border-[#ececec] p-8 min-h-[180px]">
+            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
               <span className="text-4xl text-[#bfae82]">🛎️</span>
               <span className="font-bold text-[#4d5c3a] text-xl">Transfer</span>
               <span className="text-base text-[#4d5c3a]">Navetta da/per aeroporto</span>
             </div>
-            <div className="flex flex-col items-center gap-4 bg-white rounded-lg shadow-lg border border-[#ececec] p-8 min-h-[180px]">
+            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
               <span className="text-4xl text-[#bfae82]">🐾</span>
               <span className="font-bold text-[#4d5c3a] text-xl">Pet Friendly</span>
               <span className="text-base text-[#4d5c3a]">Animali ammessi</span>
             </div>
-            <div className="flex flex-col items-center gap-4 bg-white rounded-lg shadow-lg border border-[#ececec] p-8 min-h-[180px]">
+            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
               <span className="text-4xl text-[#bfae82]">🥾</span>
               <span className="font-bold text-[#4d5c3a] text-xl">Escursioni</span>
               <span className="text-base text-[#4d5c3a]">Tour guidati tra ulivi e mare</span>
             </div>
-            <div className="flex flex-col items-center gap-4 bg-white rounded-lg shadow-lg border border-[#ececec] p-8 min-h-[180px]">
+            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
               <span className="text-4xl text-[#bfae82]">🚲</span>
               <span className="font-bold text-[#4d5c3a] text-xl">Biciclette</span>
               <span className="text-base text-[#4d5c3a]">Noleggio gratuito</span>
             </div>
-            <div className="flex flex-col items-center gap-4 bg-white rounded-lg shadow-lg border border-[#ececec] p-8 min-h-[180px]">
+            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
               <span className="text-4xl text-[#bfae82]">🏊‍♂️</span>
               <span className="font-bold text-[#4d5c3a] text-xl">Piscina</span>
               <span className="text-base text-[#4d5c3a]">Piscina panoramica</span>
             </div>
-            <div className="flex flex-col items-center gap-4 bg-white rounded-[2.5rem] shadow-2xl border border-[#ececec] p-10 min-h-[180px]">
+            <div className="card p-10 flex flex-col items-center gap-4 min-h-[180px]">
               <span className="text-4xl text-[#bfae82]">💆‍♀️</span>
               <span className="font-bold text-[#4d5c3a] text-xl">Spa</span>
               <span className="text-base text-[#4d5c3a]">Area benessere</span>
@@ -538,7 +588,7 @@ export default function Home() {
                 <input required type="email" className="w-full px-3 py-2 rounded border border-[#ececec] mb-3" placeholder="Email" />
                 <textarea required className="w-full px-3 py-2 rounded border border-[#ececec] mb-3" rows={3} placeholder="Messaggio"></textarea>
                 <div className="flex items-center justify-between gap-3">
-                  <button type="submit" className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 bg-[#bfae82] text-white px-4 py-2 rounded-md font-semibold">
+                  <button type="submit" className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary px-4 py-2 rounded-md font-semibold">
                     <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Invia</span>
                   </button>
                   <a target="_blank" rel="noreferrer noopener" href="https://wa.me/393339876543?text=Vorrei%20prenotare" className="inline-flex items-center gap-2 text-[#4d5c3a] px-3 py-2 rounded-md border border-[#ececec] hover:bg-[#fffaf0]" aria-label="Apri chat WhatsApp">
