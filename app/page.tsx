@@ -493,8 +493,11 @@ export default function Home() {
         </section>
 
         {/* Servizi */}
-        <section className="w-full max-w-6xl mx-auto mb-20">
-          <h2 className="text-4xl font-extrabold text-[#4d5c3a] mb-10 text-center">I nostri servizi</h2>
+        <section className="w-full max-w-6xl mx-auto mb-24 px-6">
+          <div className="text-center mb-12">
+            <h2 className="section-title">I nostri servizi</h2>
+            <p className="section-subtitle">Tutto quello che ti serve per una vacanza perfetta</p>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
             <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
               <span className="text-4xl text-[#bfae82]">📶</span>
