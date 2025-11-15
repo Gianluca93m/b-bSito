@@ -1,0 +1,415 @@
+generator client {
+	provider = "prisma-client-js"
+}
+
+datasource db {
+	provider = "sqlite"
+	url      = "file:./dev.db"
+}
+
+model PackageCategory {
+	id          String   @id @default(cuid())
+	name        String   @unique
+	description String?
+	icon        String?
+	active      Boolean  @default(true)
+	packages    Package[]
+}
+model ServiceCategory {
+	id          String   @id @default(cuid())
+	name        String   @unique
+	description String?
+	icon        String?
+	active      Boolean  @default(true)
+	services    ExtraService[]
+}
+model ProductCategory {
+	id          String   @id @default(cuid())
+	name        String   @unique
+	description String?
+	icon        String?
+	active      Boolean  @default(true)
+	products    Product[]
+}
+model User {
+	id               String     @id @default(cuid())
+	email            String     @unique
+	password         String
+	name             String?
+	role             String     @default("customer") // admin, owner, customer
+	phone            String?
+	image            String?
+	emailVerified    DateTime?
+	preferences      String?
+	leadSource       String?
+	customerSegment  String?
+	lifetimeValue    Float      @default(0)
+	bookingCount     Int        @default(0)
+	marketingConsent Boolean    @default(false)
+	privacyConsent   Boolean    @default(true)
+	language         String     @default("it")
+	country          String?
+	createdAt        DateTime   @default(now())
+	updatedAt        DateTime   @updatedAt
+	ownedRooms       Room[]
+	bookings         Booking[]
+	orders           Order[]
+	accounts         Account[]
+	sessions         Session[]
+	wishlists        Wishlist[]
+}
+model Room {
+	id                String       @id @default(cuid())
+	name              String
+	description       String
+	bedrooms          Int          @default(1)
+	bathrooms         Int          @default(1)
+	maxGuests         Int          @default(2)
+	hasPool           Boolean      @default(false)
+	poolType          String?
+	squareMeters      Int?
+	address           String?
+	city              String       @default("Ostuni")
+	province          String       @default("Brindisi")
+	region            String       @default("Puglia")
+	country           String       @default("IT")
+	latitude          Float?
+	longitude         Float?
+	capacity          Int          @default(2)
+	pricePerNight     Float
+	images            String
+	amenities         String
+	available         Boolean      @default(true)
+	requiresPayment   Boolean      @default(false)
+	depositPercentage Float        @default(30)
+	balanceDueDays    Int          @default(7)
+	ownerId           String?
+	owner             User?        @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+	createdAt         DateTime     @default(now())
+	updatedAt         DateTime     @updatedAt
+	bookings          Booking[]
+	cis               PropertyCIS?
+	wishlists         Wishlist[]
+}
+model Account {
+	id                String   @id @default(cuid())
+	userId            String
+	type              String
+	provider          String
+	providerAccountId String
+	refresh_token     String?
+	access_token      String?
+	expires_at        Int?
+	token_type        String?
+	scope             String?
+	id_token          String?
+	session_state     String?
+	user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+	@@unique([provider, providerAccountId])
+	@@index([userId])
+}
+model Session {
+	id           String   @id @default(cuid())
+	sessionToken String   @unique
+	userId       String
+	expires      DateTime
+	user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+	@@index([userId])
+}
+model VerificationToken {
+	identifier String
+	token      String   @unique
+	expires    DateTime
+	@@unique([identifier, token])
+}
+model Booking {
+	id               String         @id @default(cuid())
+	roomId           String
+	userId           String
+	packageId        String?
+	checkIn          DateTime
+	checkOut         DateTime
+	guests           Int
+	totalPrice       Float
+	depositAmount    Float?
+	balanceAmount    Float?
+	balanceDueDate   DateTime?
+	status           String         @default("pending")
+	paymentStatus    String         @default("unpaid")
+	depositPaymentId String?
+	balancePaymentId String?
+	paymentMethod    String?
+	checkInToken     String?        @unique
+	checkInCompleted Boolean        @default(false)
+	checkInTime      DateTime?
+	notes            String?
+	createdAt        DateTime       @default(now())
+	updatedAt        DateTime       @updatedAt
+	package          Package?       @relation(fields: [packageId], references: [id])
+	user             User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+	room             Room           @relation(fields: [roomId], references: [id], onDelete: Cascade)
+	extras           BookingExtra[]
+	guestData        GuestData[]
+	touristTax       TouristTax?
+	@@index([roomId])
+	@@index([userId])
+	@@index([packageId])
+	@@index([checkIn, checkOut])
+	@@index([balanceDueDate])
+}
+model Package {
+	categoryId  String?
+	category    PackageCategory? @relation(fields: [categoryId], references: [id])
+	id          String    @id @default(cuid())
+	name        String
+	description String
+	nights      Int
+	price       Float
+	features    String
+	image       String?
+	popular     Boolean   @default(false)
+	createdAt   DateTime  @default(now())
+	updatedAt   DateTime  @updatedAt
+	bookings    Booking[]
+}
+model Setting {
+	id        String   @id @default(cuid())
+	key       String   @unique
+	value     String
+	updatedAt DateTime @updatedAt
+}
+model HeroSlide {
+	id        String   @id @default(cuid())
+	imageUrl  String
+	title     String?
+	subtitle  String?
+	order     Int      @default(0)
+	active    Boolean  @default(true)
+	createdAt DateTime @default(now())
+	updatedAt DateTime @updatedAt
+}
+model HomeContent {
+	id        String   @id @default(cuid())
+	section   String   @unique
+	content   String
+	active    Boolean  @default(true)
+	updatedAt DateTime @updatedAt
+}
+model Wishlist {
+	id         String   @id @default(cuid())
+	userId     String
+	roomId     String
+	createdAt  DateTime @default(now())
+	room       Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+	user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+	@@unique([userId, roomId])
+}
+model SharedWishlist {
+	id          String    @id @default(cuid())
+	shareToken  String    @unique
+	userId      String?
+	ownerName   String?
+	ownerEmail  String?
+	propertyIds String
+	checkIn     DateTime?
+	checkOut    DateTime?
+	guests      Int?
+	notes       String?
+	expiresAt   DateTime?
+	views       Int       @default(0)
+	createdAt   DateTime  @default(now())
+	updatedAt   DateTime  @updatedAt
+}
+model ExtraService {
+	id          String         @id @default(cuid())
+	name        String
+	description String?
+	price       Float
+	categoryId  String?
+	category    ServiceCategory? @relation(fields: [categoryId], references: [id])
+	imageUrl    String?
+	active      Boolean        @default(true)
+	createdAt   DateTime       @default(now())
+	updatedAt   DateTime       @updatedAt
+	duration    Int?
+	location    String?
+	maxPeople   Int?
+	bookings    BookingExtra[]
+}
+model BookingExtra {
+	id        String       @id @default(cuid())
+	bookingId String
+	serviceId String
+	quantity  Int          @default(1)
+	price     Float
+	createdAt DateTime     @default(now())
+	service   ExtraService @relation(fields: [serviceId], references: [id])
+	booking   Booking      @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+}
+model PropertyProposal {
+	id              String   @id @default(cuid())
+	ownerName       String
+	ownerEmail      String
+	ownerPhone      String?
+	propertyName    String
+	propertyAddress String
+	description     String
+	bedrooms        Int
+	bathrooms       Int
+	maxGuests       Int
+	amenities       String
+	images          String?
+	status          String   @default("pending")
+	notes           String?
+	createdAt       DateTime @default(now())
+	updatedAt       DateTime @updatedAt
+}
+model Product {
+	id          String      @id @default(cuid())
+	name        String
+	description String
+	categoryId  String?
+	category    ProductCategory? @relation(fields: [categoryId], references: [id])
+	price       Float
+	stock       Int         @default(0)
+	imageUrl    String?
+	active      Boolean     @default(true)
+	createdAt   DateTime    @default(now())
+	updatedAt   DateTime    @updatedAt
+	orderItems  OrderItem[]
+}
+model Order {
+	id              String      @id @default(cuid())
+	userId          String
+	totalPrice      Float
+	status          String      @default("pending")
+	paymentStatus   String      @default("unpaid")
+	paymentId       String?
+	shippingAddress String
+	shippingCity    String
+	shippingZip     String
+	shippingCountry String      @default("IT")
+	notes           String?
+	createdAt       DateTime    @default(now())
+	updatedAt       DateTime    @updatedAt
+	user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+	items           OrderItem[]
+}
+model OrderItem {
+	id        String   @id @default(cuid())
+	orderId   String
+	productId String
+	quantity  Int
+	price     Float
+	createdAt DateTime @default(now())
+	product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+	order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+model GuestData {
+	id                String    @id @default(cuid())
+	bookingId         String
+	firstName         String
+	lastName          String
+	gender            String
+	birthDate         DateTime
+	birthPlace        String
+	birthCountry      String    @default("IT")
+	nationality       String    @default("IT")
+	documentType      String
+	documentNumber    String
+	documentIssueDate DateTime?
+	documentExpiry    DateTime?
+	residenceAddress  String?
+	residenceCity     String?
+	residenceCountry  String?   @default("IT")
+	submittedToPolice Boolean   @default(false)
+	submittedAt       DateTime?
+	createdAt         DateTime  @default(now())
+	updatedAt         DateTime  @updatedAt
+	booking           Booking   @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+}
+model TouristTax {
+	id           String   @id @default(cuid())
+	bookingId    String   @unique
+	municipality String
+	taxPerNight  Float
+	nights       Int
+	guests       Int
+	totalTax     Float
+	exemptions   Int      @default(0)
+	paid         Boolean  @default(false)
+	notes        String?
+	createdAt    DateTime @default(now())
+	updatedAt    DateTime @updatedAt
+	booking      Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+}
+model PropertyCIS {
+	id           String    @id @default(cuid())
+	roomId       String    @unique
+	cisCode      String    @unique
+	region       String    @default("Puglia")
+	province     String
+	municipality String
+	issueDate    DateTime
+	expiryDate   DateTime?
+	active       Boolean   @default(true)
+	createdAt    DateTime  @default(now())
+	updatedAt    DateTime  @updatedAt
+	room         Room      @relation(fields: [roomId], references: [id], onDelete: Cascade)
+}
+model EmailTemplate {
+	id        String   @id @default(cuid())
+	name      String   @unique
+	type      String
+	trigger   String
+	subject   String
+	body      String
+	active    Boolean  @default(true)
+	createdAt DateTime @default(now())
+	updatedAt DateTime @updatedAt
+}
+model EmailLog {
+	id         String    @id @default(cuid())
+	bookingId  String?
+	userId     String?
+	templateId String?
+	recipient  String
+	subject    String
+	status     String
+	sentAt     DateTime?
+	error      String?
+	createdAt  DateTime  @default(now())
+}
+model CalendarSync {
+	id             String    @id @default(cuid())
+	propertyId     String
+	channel        String
+	externalId     String?
+	icalUrl        String?
+	syncEnabled    Boolean   @default(true)
+	lastSyncAt     DateTime?
+	lastSyncStatus String?
+	syncErrors     String?
+	createdAt      DateTime  @default(now())
+	updatedAt      DateTime  @updatedAt
+	@@unique([propertyId, channel])
+	@@index([propertyId])
+}
+model CustomSearch {
+	id            String    @id @default(cuid())
+	searchToken   String    @unique
+	checkIn       DateTime?
+	checkOut      DateTime?
+	guests        Int?
+	location      String?
+	propertyIds   String?
+	createdBy     String?
+	customerName  String?
+	customerEmail String?
+	notes         String?
+	views         Int       @default(0)
+	conversions   Int       @default(0)
+	expiresAt     DateTime?
+	createdAt     DateTime  @default(now())
+	updatedAt     DateTime  @updatedAt
+}
