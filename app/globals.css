@@ -211,16 +211,28 @@ h1,h2,h3,h4,h5 { font-family: 'Playfair Display', Georgia, Cambria, 'Times New R
 
 /* Hero section styling */
 .hero-title {
-  text-shadow: 0 4px 16px rgba(0,0,0,0.3);
-  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  line-height: 1.15;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    text-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
 }
 
 .hero-panel {
-  background: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 1rem;
-  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+@media (min-width: 768px) {
+  .hero-panel {
+    border-radius: 1rem;
+  }
 }
 
 /* Testimonials styling */
