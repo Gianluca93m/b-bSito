@@ -361,24 +361,34 @@ export default function Home() {
                   const centerIndex = carouselIndex + Math.floor(visibleCount / 2)
                   const isActive = idx === centerIndex
                   return (
-                    <article key={p.id} className={`carousel-item relative card p-0 flex flex-col overflow-hidden min-h-[480px] ${isActive ? 'is-active' : ''}`}>
-                    <div className="w-full h-48 relative">
-                      <img src={`https://picsum.photos/seed/pacchetto-${p.id}/900/600`} alt={p.title} className="object-cover w-full h-full" />
-                      <span className="absolute top-4 right-4 bg-[#bfae82] text-white text-sm font-semibold px-4 py-1 rounded-md animate-pulse shadow">Offerta</span>
+                    <article key={p.id} className={`carousel-item relative card p-0 flex flex-col overflow-hidden ${isActive ? 'is-active' : ''}`}>
+                    <div className="w-full h-56 relative overflow-hidden">
+                      <img src={`https://picsum.photos/seed/pacchetto-${p.id}/900/600`} alt={p.title} className="object-cover w-full h-full transition-transform duration-500 hover:scale-110" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                      <span className="absolute top-4 right-4 bg-[#bfae82] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">OFFERTA</span>
                     </div>
-                    <div className="p-6 flex flex-col gap-4">
-                      <h3 className="text-2xl font-semibold text-[#4d5c3a]">{p.title}</h3>
-                      <ul className="text-[#4d5c3a] text-lg mb-2 list-disc ml-6">
-                        <li>Notte confortevole</li>
-                        <li>Colazione inclusa</li>
-                        <li>Servizi dedicati</li>
+                    <div className="p-6 flex flex-col gap-4 flex-1">
+                      <h3 className="text-xl font-bold text-[#4d5c3a]">{p.title}</h3>
+                      <ul className="text-[#4d5c3a] text-sm space-y-2">
+                        <li className="flex items-center gap-2">
+                          <span className="text-[#bfae82] font-bold">✓</span>
+                          <span>Notte confortevole</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="text-[#bfae82] font-bold">✓</span>
+                          <span>Colazione inclusa</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="text-[#bfae82] font-bold">✓</span>
+                          <span>Servizi dedicati</span>
+                        </li>
                       </ul>
-                      <div className="flex items-center gap-3">
-                        <span className="inline-flex btn-primary px-4 py-2 rounded font-bold text-lg">{p.price}</span>
-                        <span className="text-base text-[#bfae82]">Offerta limitata</span>
+                      <div className="flex items-center gap-3 mt-auto pt-2">
+                        <span className="text-3xl font-bold text-[#bfae82]">{p.price}</span>
+                        <span className="text-xs text-[#6b7460] font-medium">per notte</span>
                       </div>
-                      <button className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary font-semibold px-6 py-2 rounded-md shadow transition text-base">
-                        <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Dettagli</span>
+                      <button className="btn-primary font-semibold px-4 py-2.5 rounded-lg shadow-md hover:shadow-lg text-sm w-full transition-all">
+                        Vedi dettagli
                       </button>
                     </div>
                     </article>
