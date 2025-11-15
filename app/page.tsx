@@ -652,8 +652,8 @@ export default function Home() {
       </section>
 
       {/* Footer with embedded Contatti */}
-      <footer role="contentinfo" className="w-full bg-[#f9f7f3] border-t border-[#efe6d6] py-12 text-[#4d5c3a]">
-        <div className="max-w-7xl mx-auto px-6">
+      <footer role="contentinfo" className="w-full bg-[#4d5c3a] text-white border-t border-[#3f4f36] py-16 text-white">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
             <div className="md:col-span-1">
               <img src="/logo-beb.png" alt="Logo" className="h-16 w-16 rounded-full border border-[#ececec] shadow mb-4" />
