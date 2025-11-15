@@ -258,29 +258,34 @@ h1,h2,h3,h4,h5 { font-family: 'Playfair Display', Georgia, Cambria, 'Times New R
   transform: scale(1.1);
 }
 
-/* Hero section styling */
+/* Hero section styling - luxurious design */
 .hero-title {
-  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  line-height: 1.15;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  font-size: clamp(2rem, 8vw, 4rem);
+  color: white;
 }
 
-@media (min-width: 768px) {
-  .hero-title {
-    text-shadow: 0 4px 16px rgba(0,0,0,0.3);
-  }
+.hero-subtitle {
+  text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  color: rgba(255,255,255,0.95);
+  font-size: clamp(1rem, 3vw, 1.5rem);
 }
 
 .hero-panel {
-  background: rgba(255,255,255,0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 0.75rem;
-  border: 1px solid rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 3rem 2rem;
 }
 
 @media (min-width: 768px) {
   .hero-panel {
-    border-radius: 1rem;
+    padding: 4rem 3rem;
+    border-radius: 2rem;
   }
 }
 
