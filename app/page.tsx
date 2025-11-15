@@ -376,11 +376,11 @@ export default function Home() {
         </section>
 
         {/* Pacchetti - full width carousel */}
-        <section id="pacchetti" className="carousel-bleed w-screen">
+        <section id="pacchetti" className="carousel-bleed w-screen bg-gradient-to-b from-white via-white to-[#f9f8f5]">
           <div className="carousel-wrapper">
-            <div className="text-center mb-10 sm:mb-12 px-6 max-w-6xl mx-auto">
-              <h2 className="section-title">Pacchetti promozionali</h2>
-              <p className="section-subtitle">Scopri le nostre offerte speciali per il tuo soggiorno</p>
+            <div className="text-center mb-12 sm:mb-16 px-6 max-w-6xl mx-auto">
+              <h2 className="section-title text-3xl sm:text-4xl">Le nostre esperienze esclusive</h2>
+              <p className="section-subtitle mt-3">Pacchetti curati per offrire momenti indimenticabili</p>
             </div>
 
             <div
