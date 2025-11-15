@@ -393,36 +393,48 @@ export default function Home() {
                 {packagesList.map((p, idx) => {
                   const centerIndex = carouselIndex + Math.floor(visibleCount / 2)
                   const isActive = idx === centerIndex
+                  const images = [
+                    'https://images.pexels.com/photos/2598638/pexels-photo-2598638.jpeg',
+                    'https://images.pexels.com/photos/6466288/pexels-photo-6466288.jpeg',
+                    'https://images.pexels.com/photos/6466283/pexels-photo-6466283.jpeg',
+                    'https://images.pexels.com/photos/19075385/pexels-photo-19075385.jpeg',
+                  ]
+                  const imgUrl = images[idx % images.length]
                   return (
-                    <article key={p.id} className={`carousel-item relative card p-0 flex flex-col overflow-hidden ${isActive ? 'is-active' : ''}`}>
-                    <div className="w-full h-56 relative overflow-hidden">
-                      <img src={`https://picsum.photos/seed/pacchetto-${p.id}/900/600`} alt={p.title} className="object-cover w-full h-full transition-transform duration-500 hover:scale-110" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                      <span className="absolute top-4 right-4 bg-[#bfae82] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">OFFERTA</span>
+                    <article key={p.id} className={`carousel-item relative card p-0 flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ${isActive ? 'is-active' : ''}`}>
+                    <div className="relative w-full h-64 sm:h-72 overflow-hidden bg-gray-200">
+                      <img src={imgUrl} alt={p.title} className="object-cover w-full h-full transition-transform duration-700 hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+                      <span className="absolute top-4 right-4 bg-gradient-to-r from-[#bfae82] to-[#a88f5f] text-white text-xs font-bold px-4 py-2 rounded-full shadow-xl uppercase tracking-wider">Offerta Speciale</span>
                     </div>
-                    <div className="p-6 flex flex-col gap-4 flex-1">
-                      <h3 className="text-xl font-bold text-[#4d5c3a]">{p.title}</h3>
-                      <ul className="text-[#4d5c3a] text-sm space-y-2">
-                        <li className="flex items-center gap-2">
-                          <span className="text-[#bfae82] font-bold">✓</span>
-                          <span>Notte confortevole</span>
+                    <div className="p-6 sm:p-8 flex flex-col gap-5 flex-1">
+                      <div>
+                        <h3 className="text-2xl font-bold text-[#4d5c3a] mb-2">{p.title}</h3>
+                        <p className="text-sm text-[#6b7460]">Esperienza esclusiva per il tuo soggiorno</p>
+                      </div>
+                      <ul className="text-[#4d5c3a] text-sm space-y-2.5 flex-1">
+                        <li className="flex items-center gap-3">
+                          <span className="text-lg text-[#bfae82]">✨</span>
+                          <span className="font-medium">Stanza lussuosa con vista</span>
                         </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-[#bfae82] font-bold">✓</span>
-                          <span>Colazione inclusa</span>
+                        <li className="flex items-center gap-3">
+                          <span className="text-lg text-[#bfae82]">☕</span>
+                          <span className="font-medium">Colazione gourmet</span>
                         </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-[#bfae82] font-bold">✓</span>
-                          <span>Servizi dedicati</span>
+                        <li className="flex items-center gap-3">
+                          <span className="text-lg text-[#bfae82]">🎁</span>
+                          <span className="font-medium">Servizi esclusivi</span>
                         </li>
                       </ul>
-                      <div className="flex items-center gap-3 mt-auto pt-2">
-                        <span className="text-3xl font-bold text-[#bfae82]">{p.price}</span>
-                        <span className="text-xs text-[#6b7460] font-medium">per notte</span>
+                      <div className="border-t border-[#ececec] pt-5">
+                        <div className="flex items-baseline gap-2 mb-5">
+                          <span className="text-4xl font-bold text-[#bfae82]">{p.price}</span>
+                          <span className="text-sm text-[#6b7460] font-medium">per notte</span>
+                        </div>
+                        <button className="btn-primary w-full py-3.5 text-sm font-bold">
+                          Scopri di più
+                        </button>
                       </div>
-                      <button className="btn-primary font-semibold px-4 py-2.5 rounded-lg shadow-md hover:shadow-lg text-sm w-full transition-all">
-                        Vedi dettagli
-                      </button>
                     </div>
                     </article>
                   )
