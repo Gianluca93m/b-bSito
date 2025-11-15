@@ -542,12 +542,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* (Map removed from here — will render full-width just before footer) */}
-
-        {/* Contatti (moved to bottom) */}
         {/* FAQ */}
-        <section className="w-full max-w-6xl mx-auto mb-16">
-          <h2 className="text-3xl font-extrabold text-[#4d5c3a] mb-6 text-center">Domande frequenti</h2>
+        <section className="w-full max-w-6xl mx-auto mb-24 px-6">
+          <div className="text-center mb-12">
+            <h2 className="section-title">Domande frequenti</h2>
+            <p className="section-subtitle">Risposte alle domande più comuni</p>
+          </div>
           <div className="space-y-4">
             {/* Accessible accordion: uses local state to control open panel for keyboard/screen-reader friendliness */}
             {[
