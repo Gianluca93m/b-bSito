@@ -302,28 +302,39 @@ export default function Home() {
         <section className="w-full max-w-6xl mx-auto mb-20">
           <h2 className="text-4xl font-extrabold text-[#4d5c3a] mb-10 text-center">Cosa dicono di noi</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="card p-0 flex flex-col overflow-hidden min-h-[260px]">
-              <div className="flex items-center gap-6 p-8 pb-0">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="avatar" className="rounded-full w-20 h-20 border border-[#ececec] shadow-lg" />
+            {/* Testimonial: Giulia R. */}
+            <article className="card p-6 flex flex-col gap-4">
+              <div className="flex items-center gap-4">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Giulia R." className="rounded-full w-20 h-20 border border-[#ececec] shadow-lg" />
                 <div>
-                  <span className="font-bold text-[#4d5c3a] text-xl">Giulia R.</span>
-                  <span className="block text-base text-[#bfae82]">Booking.com · 12/10/2025</span>
+                  <div className="font-bold text-[#4d5c3a] text-lg">Giulia R.</div>
+                  <div className="text-sm text-[#bfae82]">Booking.com · 12/10/2025</div>
                 </div>
               </div>
-              <div className="flex gap-1 px-8 mb-2">{'★★★★★'.split('').map((s,i)=>(<span key={i} className="text-[#bfae82] text-xl">★</span>))}</div>
-              <p className="text-[#4d5c3a] px-8 pb-8 text-lg">Esperienza fantastica! Camere pulite, colazione abbondante e staff gentilissimo. Torneremo sicuramente.</p>
-            </div>
-            <div className="card p-0 flex flex-col overflow-hidden min-h-[260px]">
-              <div className="flex items-center gap-6 p-8 pb-0">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar" className="rounded-full w-20 h-20 border border-[#ececec] shadow-lg" />
+              <div className="flex items-center gap-1" aria-hidden>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span key={i} className="text-[#bfae82] text-xl">★</span>
+                ))}
+              </div>
+              <p className="text-[#4d5c3a] text-lg">Esperienza fantastica! Camere pulite, colazione abbondante e staff gentilissimo. Torneremo sicuramente.</p>
+            </article>
+
+            {/* Testimonial: Marco P. */}
+            <article className="card p-6 flex flex-col gap-4">
+              <div className="flex items-center gap-4">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marco P." className="rounded-full w-20 h-20 border border-[#ececec] shadow-lg" />
                 <div>
-                  <span className="font-bold text-[#4d5c3a] text-xl">Marco P.</span>
-                  <span className="block text-base text-[#bfae82]">Google · 05/09/2025</span>
+                  <div className="font-bold text-[#4d5c3a] text-lg">Marco P.</div>
+                  <div className="text-sm text-[#bfae82]">Google · 05/09/2025</div>
                 </div>
               </div>
-              <div className="flex gap-1 px-8 mb-2">{'★★★★☆'.split('').map((s,i)=>(<span key={i} className="text-[#bfae82] text-xl">★</span>))}</div>
-              <p className="text-[#4d5c3a] px-8 pb-8 text-lg">Location perfetta per rilassarsi. Piscina e spa top. Consigliato!</p>
-            </div>
+              <div className="flex items-center gap-1" aria-hidden>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span key={i} className="text-[#bfae82] text-xl">★</span>
+                ))}
+              </div>
+              <p className="text-[#4d5c3a] text-lg">Location perfetta per rilassarsi. Piscina e spa top. Consigliato!</p>
+            </article>
           </div>
           <div className="mt-8 text-center">
             <a href="#" className="inline-block group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary font-bold px-8 py-3 rounded-full shadow-lg transition text-lg">
