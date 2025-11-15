@@ -469,29 +469,31 @@ export default function Home() {
         <Gallery />
 
         {/* Staff */}
-        <section className="w-full max-w-6xl mx-auto mb-24 px-6">
-          <div className="text-center mb-12">
-            <h2 className="section-title">Il nostro team</h2>
-            <p className="section-subtitle">Persone appassionate al tuo benessere</p>
-          </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
-          <div className="card p-8 flex flex-col items-center min-h-[300px]">
-              <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Staff" className="rounded-full w-28 h-28 border border-[#ececec] shadow-lg mb-4" />
-              <span className="font-bold text-[#4d5c3a] text-2xl">Anna</span>
-              <span className="text-base text-[#bfae82] mb-2">Proprietaria</span>
-              <p className="text-[#4d5c3a] text-lg text-center">Accoglienza e cura degli ospiti sono la sua passione.</p>
+        <section className="w-full bg-white py-16 sm:py-20 mb-0">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="section-title">Il nostro team</h2>
+              <p className="section-subtitle">Persone appassionate al tuo benessere</p>
             </div>
-            <div className="card p-8 flex flex-col items-center min-h-[300px]">
-              <img src="https://randomuser.me/api/portraits/men/43.jpg" alt="Staff" className="rounded-full w-28 h-28 border border-[#ececec] shadow-lg mb-4" />
-              <span className="font-bold text-[#4d5c3a] text-2xl">Luca</span>
-              <span className="text-base text-[#bfae82] mb-2">Chef</span>
-              <p className="text-[#4d5c3a] text-lg text-center">Specialità pugliesi e colazioni indimenticabili.</p>
-            </div>
-            <div className="card p-8 flex flex-col items-center min-h-[300px]">
-              <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Staff" className="rounded-full w-28 h-28 border border-[#ececec] shadow-lg mb-4" />
-              <span className="font-bold text-[#4d5c3a] text-2xl">Sara</span>
-              <span className="text-base text-[#bfae82] mb-2">Reception</span>
-              <p className="text-[#4d5c3a] text-lg text-center">Sempre pronta a consigliare le migliori escursioni.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              <div className="card p-6 sm:p-8 flex flex-col items-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Anna, proprietaria" className="rounded-full w-32 h-32 sm:w-36 sm:h-36 border-4 border-[#bfae82] shadow-lg mb-6 object-cover" />
+                <span className="font-bold text-[#4d5c3a] text-2xl sm:text-3xl">Anna</span>
+                <span className="text-base text-[#bfae82] font-semibold mb-3">Proprietaria</span>
+                <p className="text-[#4d5c3a] text-center leading-relaxed">Accoglienza e cura degli ospiti sono la sua passione.</p>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <img src="https://randomuser.me/api/portraits/men/43.jpg" alt="Luca, chef" className="rounded-full w-32 h-32 sm:w-36 sm:h-36 border-4 border-[#bfae82] shadow-lg mb-6 object-cover" />
+                <span className="font-bold text-[#4d5c3a] text-2xl sm:text-3xl">Luca</span>
+                <span className="text-base text-[#bfae82] font-semibold mb-3">Chef</span>
+                <p className="text-[#4d5c3a] text-center leading-relaxed">Specialità pugliesi e colazioni indimenticabili.</p>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sara, reception" className="rounded-full w-32 h-32 sm:w-36 sm:h-36 border-4 border-[#bfae82] shadow-lg mb-6 object-cover" />
+                <span className="font-bold text-[#4d5c3a] text-2xl sm:text-3xl">Sara</span>
+                <span className="text-base text-[#bfae82] font-semibold mb-3">Reception</span>
+                <p className="text-[#4d5c3a] text-center leading-relaxed">Sempre pronta a consigliare le migliori escursioni.</p>
+              </div>
             </div>
           </div>
         </section>
