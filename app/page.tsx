@@ -349,7 +349,7 @@ export default function Home() {
         {/* Pacchetti - full width carousel */}
         <section id="pacchetti" className="carousel-bleed w-screen">
           <div className="carousel-wrapper">
-            <div className="text-center mb-8 px-6 max-w-6xl mx-auto">
+            <div className="text-center mb-10 sm:mb-12 px-6 max-w-6xl mx-auto">
               <h2 className="section-title">Pacchetti promozionali</h2>
               <p className="section-subtitle">Scopri le nostre offerte speciali per il tuo soggiorno</p>
             </div>
