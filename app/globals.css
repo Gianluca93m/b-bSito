@@ -87,11 +87,18 @@ h1,h2,h3,h4,h5 { font-family: 'Playfair Display', Georgia, Cambria, 'Times New R
 /* Highlights / badge utilities */
 .highlight-card {
   border-radius: 0.75rem;
-  padding: 1.75rem 1.5rem;
+  padding: 1.5rem 1.25rem;
   background: linear-gradient(180deg, #ffffff 0%, #fbfaf6 100%);
   border: 1px solid var(--muted-400);
-  box-shadow: 0 8px 24px rgba(39,64,43,0.04);
+  box-shadow: 0 4px 12px rgba(39,64,43,0.04);
   transition: all 300ms ease;
+}
+
+@media (min-width: 768px) {
+  .highlight-card {
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 8px 24px rgba(39,64,43,0.04);
+  }
 }
 
 .highlight-card:hover {
