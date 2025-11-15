@@ -277,26 +277,28 @@ export default function Home() {
         </div>
       </nav>
       {/* Hero section */}
-      <main className="pt-32 pb-12 px-4 flex flex-col items-center font-sans">
-        <section className="w-full flex flex-col items-center justify-center py-24 bg-cover bg-center rounded-2xl overflow-hidden mb-16" style={{backgroundImage: 'url(https://www.turismovieste.it/index/wp-content/uploads/2024/02/ostunialtramonto.jpg)'}}>
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative z-10 px-6 py-16 max-w-3xl w-full text-center hero-panel">
-            <h1 className="text-5xl md:text-7xl font-bold text-[#4d5c3a] mb-4 tracking-tight hero-title">Per un soggiorno da favola</h1>
-            <p className="text-xl text-[#4d5c3a] mb-8 opacity-90">Nel cuore di Ostuni, tra ulivi e mare Adriatico</p>
-            <form className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 bg-white rounded-xl shadow-xl px-6 py-6 border border-[#ececec]">
-              <div className="flex flex-col items-start w-full sm:w-auto">
-                <label htmlFor="checkin" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Check-in</label>
-                <input type="date" id="checkin" name="checkin" className="bg-[#f5f5f5] px-4 py-2.5 text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full sm:w-auto transition-all" placeholder="Check-in" />
+      <main className="pt-20 sm:pt-32 pb-12 px-4 flex flex-col items-center font-sans">
+        <section className="w-full flex flex-col items-center justify-center py-12 sm:py-24 bg-cover bg-center bg-fixed rounded-xl sm:rounded-2xl overflow-hidden mb-12 sm:mb-16 min-h-[400px] sm:min-h-[500px]" style={{backgroundImage: 'url(https://www.turismovieste.it/index/wp-content/uploads/2024/02/ostunialtramonto.jpg)', backgroundAttachment: 'scroll', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+          <div className="absolute inset-0 bg-black/25 sm:bg-black/20"></div>
+          <div className="relative z-10 px-4 sm:px-6 py-8 sm:py-16 w-full max-w-2xl sm:max-w-3xl text-center hero-panel">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#4d5c3a] mb-3 sm:mb-4 tracking-tight hero-title leading-tight">Per un soggiorno da favola</h1>
+            <p className="text-base sm:text-lg md:text-xl text-[#4d5c3a] mb-6 sm:mb-8 opacity-90">Nel cuore di Ostuni, tra ulivi e mare Adriatico</p>
+            <form className="flex flex-col gap-4 bg-white rounded-lg sm:rounded-xl shadow-xl px-4 sm:px-6 py-5 sm:py-6 border border-[#ececec] w-full">
+              <div className="flex flex-col sm:flex-row gap-4 w-full">
+                <div className="flex flex-col items-start w-full sm:flex-1">
+                  <label htmlFor="checkin" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Check-in</label>
+                  <input type="date" id="checkin" name="checkin" className="bg-[#f5f5f5] px-3 sm:px-4 py-3 text-sm sm:text-base text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full transition-all" placeholder="Check-in" />
+                </div>
+                <div className="flex flex-col items-start w-full sm:flex-1">
+                  <label htmlFor="checkout" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Check-out</label>
+                  <input type="date" id="checkout" name="checkout" className="bg-[#f5f5f5] px-3 sm:px-4 py-3 text-sm sm:text-base text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full transition-all" placeholder="Check-out" />
+                </div>
+                <div className="flex flex-col items-start w-full sm:w-24">
+                  <label htmlFor="guests" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Ospiti</label>
+                  <input type="number" id="guests" name="guests" min="1" max="10" className="bg-[#f5f5f5] px-3 sm:px-4 py-3 text-sm sm:text-base text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full transition-all" placeholder="2" />
+                </div>
               </div>
-              <div className="flex flex-col items-start w-full sm:w-auto">
-                <label htmlFor="checkout" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Check-out</label>
-                <input type="date" id="checkout" name="checkout" className="bg-[#f5f5f5] px-4 py-2.5 text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full sm:w-auto transition-all" placeholder="Check-out" />
-              </div>
-              <div className="flex flex-col items-start w-full sm:w-auto">
-                <label htmlFor="guests" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Ospiti</label>
-                <input type="number" id="guests" name="guests" min="1" max="10" className="bg-[#f5f5f5] px-4 py-2.5 text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full sm:w-auto transition-all" placeholder="2" />
-              </div>
-              <button type="submit" className="btn-primary font-semibold px-8 py-2.5 rounded-lg shadow-lg hover:shadow-xl text-base w-full sm:w-auto">
+              <button type="submit" className="btn-primary font-semibold px-6 sm:px-8 py-3 sm:py-3 rounded-lg shadow-lg hover:shadow-xl text-sm sm:text-base w-full transition-all">
                 Cerca disponibilità
               </button>
             </form>
