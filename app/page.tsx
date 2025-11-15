@@ -1,4 +1,3 @@
-
 "use client";
 import Banner from "./Banner";
 import DateFilterWidget from "./DateFilterWidget";
@@ -247,15 +246,15 @@ export default function Home() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-[#f7f7f7]">
+    <div className="w-full min-h-screen bg-white">
       {/* Navbar */}
-      <nav className="w-full fixed top-0 left-0 z-50 bg-white shadow border-b border-[#ececec]">
-        <div className={`container mx-auto px-8 flex justify-between items-center ${scrolled ? 'py-2' : 'py-6'} transition-all duration-300`}> 
+      <nav className="w-full fixed top-0 left-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#ececec]">
+        <div className={`container mx-auto px-8 flex justify-between items-center ${scrolled ? 'py-3' : 'py-5'} transition-all duration-300`}>
           <div className="flex items-center gap-3">
-            <img src="/logo-beb.png" alt="Logo" className={`${scrolled ? 'h-10 w-10' : 'h-14 w-14'} rounded-full border border-[#ececec] shadow transition-all duration-300`} />
-            <span className={`font-sans font-bold ${scrolled ? 'text-xl' : 'text-2xl'} text-[#4d5c3a] tracking-tight transition-all duration-300`}>B&B Paradise</span>
+            <img src="/logo-beb.png" alt="Logo" className={`${scrolled ? 'h-10 w-10' : 'h-12 w-12'} rounded-full border border-[#ececec] shadow transition-all duration-300`} />
+            <span className={`font-sans font-bold ${scrolled ? 'text-lg' : 'text-xl'} text-[#4d5c3a] tracking-tight transition-all duration-300`}>B&B Paradise</span>
           </div>
-          <ul className={`flex ${scrolled ? 'gap-4 text-sm' : 'gap-8 text-base'} font-semibold items-center transition-all duration-300`}> 
+          <ul className={`flex ${scrolled ? 'gap-6 text-sm' : 'gap-8 text-sm'} font-500 items-center transition-all duration-300`}>
             {[
               { href: '/', label: 'Home' },
               { href: '/camere', label: 'Camere' },
@@ -268,12 +267,9 @@ export default function Home() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className={`group text-[#4d5c3a] hover:text-[#bfae82] px-3 ${scrolled ? 'py-1' : 'py-2'} rounded transition-flex inline-flex flex-col items-center`}
+                  className="text-[#4d5c3a] hover:text-[#bfae82] px-2 py-2 transition-colors duration-300"
                 >
-                  {/* text rotates slightly on hover/focus */}
-                  <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">{item.label}</span>
-                  {/* small decorative bar that appears and tilts with the text */}
-                  <span className="block mt-1 h-0.5 w-6 bg-[#bfae82] opacity-0 transition-opacity duration-300 transform origin-center group-hover:opacity-100 group-focus:opacity-100 group-hover:-rotate-6 group-focus:-rotate-6"></span>
+                  {item.label}
                 </a>
               </li>
             ))}
