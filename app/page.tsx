@@ -551,20 +551,21 @@ export default function Home() {
         </section>
 
         {/* FAQ */}
-        <section className="w-full max-w-6xl mx-auto mb-24 px-6">
-          <div className="text-center mb-12">
-            <h2 className="section-title">Domande frequenti</h2>
-            <p className="section-subtitle">Risposte alle domande più comuni</p>
-          </div>
-          <div className="space-y-4">
-            {/* Accessible accordion: uses local state to control open panel for keyboard/screen-reader friendliness */}
-            {[
-              { q: "Qual è l'orario del check-in e check-out?", a: "Check-in dalle 15:00, check-out entro le 11:00. Possibilità di deposito bagagli." },
-              { q: "Accettate animali?", a: "Sì, siamo pet friendly (alcune regole e tariffe possono applicarsi)." },
-              { q: "C'è parcheggio?", a: "Sì, parcheggio privato incluso nella struttura." },
-            ].map((item, idx) => (
-              <AccordionItem key={idx} index={idx} question={item.q} answer={item.a} />
-            ))}
+        <section className="w-full bg-white py-16 sm:py-20 mb-0">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="section-title">Domande frequenti</h2>
+              <p className="section-subtitle">Risposte alle domande più comuni</p>
+            </div>
+            <div className="space-y-3 sm:space-y-4">
+              {[
+                { q: "Qual è l'orario del check-in e check-out?", a: "Check-in dalle 15:00, check-out entro le 11:00. Possibilità di deposito bagagli." },
+                { q: "Accettate animali?", a: "Sì, siamo pet friendly (alcune regole e tariffe possono applicarsi)." },
+                { q: "C'è parcheggio?", a: "Sì, parcheggio privato incluso nella struttura." },
+              ].map((item, idx) => (
+                <AccordionItem key={idx} index={idx} question={item.q} answer={item.a} />
+              ))}
+            </div>
           </div>
         </section>
         {/* Newsletter */}
@@ -698,7 +699,7 @@ export default function Home() {
 
                 <div>
                   <div className="font-semibold text-white">Orari</div>
-                  <div className="text-sm text-[#d4c4a8]">Reception: 08:00 — 22:00 · Check-in 15:00 · Check-out 11:00</div>
+                  <div className="text-sm text-[#d4c4a8]">Reception: 08:00 — 22:00 �� Check-in 15:00 · Check-out 11:00</div>
                 </div>
 
                 <div className="flex items-center gap-3 mt-4">
