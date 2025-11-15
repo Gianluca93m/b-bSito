@@ -273,9 +273,16 @@ h1,h2,h3,h4,h5 { font-family: 'Playfair Display', Georgia, Cambria, 'Times New R
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  padding: 3rem 0;
+  padding: 2rem 0 2.5rem;
   background: linear-gradient(180deg, #fbfaf6 0%, #ffffff 100%);
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .testimonial-bleed {
+    padding: 3rem 0;
+    margin-top: 2rem;
+  }
 }
 
 .testimonial-wrapper {
