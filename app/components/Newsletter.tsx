@@ -32,11 +32,11 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="w-full max-w-4xl mx-auto mb-12 px-6">
-      <div className="bg-white rounded-lg border border-[#ececec] p-8 shadow-lg">
-        <h3 className="text-2xl font-bold text-[#4d5c3a] mb-2">Iscriviti alla nostra newsletter</h3>
-        <p className="text-[#55664a] mb-4">Ricevi offerte esclusive e aggiornamenti.</p>
-        <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-4 items-center" aria-describedby="newsletter-status">
+    <section className="w-full max-w-6xl mx-auto mb-24 px-6">
+      <div className="bg-gradient-to-br from-[#4d5c3a] to-[#3f4f36] rounded-2xl border border-[#5a6b4a] p-10 md:p-12 shadow-lg">
+        <h3 className="text-3xl font-bold text-white mb-3">Iscriviti alla nostra newsletter</h3>
+        <p className="text-[#d4c4a8] mb-6 text-lg">Ricevi offerte esclusive, news e consigli di viaggio direttamente nella tua casella.</p>
+        <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-3 items-start sm:items-center" aria-describedby="newsletter-status">
           <label htmlFor="newsletter-email" className="sr-only">Email</label>
           <input
             id="newsletter-email"
@@ -44,25 +44,25 @@ export default function Newsletter() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="La tua email"
-            className="bg-[#f7f7f7] px-4 py-2 rounded border border-[#ececec] flex-1 focus:ring-2 focus:ring-[#bfae82]"
+            className="bg-white/95 px-5 py-3 rounded-lg border border-white/20 flex-1 min-w-0 focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent text-[#4d5c3a] placeholder-[#8a8f80] transition-all"
             aria-invalid={status === 'error'}
             required
           />
           <button
             type="submit"
-            className="bg-[#bfae82] text-white font-semibold px-6 py-2 rounded-md shadow disabled:opacity-60"
+            className="bg-[#bfae82] text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-[#a88f5f] transition-all disabled:opacity-60 whitespace-nowrap"
             disabled={status === 'sending' || status === 'success'}
             aria-busy={status === 'sending'}
           >
-            {status === 'sending' ? 'Invio...' : status === 'success' ? 'Iscritto' : 'Iscriviti'}
+            {status === 'sending' ? 'Invio...' : status === 'success' ? 'Iscritto ✓' : 'Iscriviti'}
           </button>
         </form>
 
-        <div id="newsletter-status" className="mt-3" aria-live="polite">
+        <div id="newsletter-status" className="mt-4" aria-live="polite">
           {message && (
-            <p className={`${status === 'error' ? 'text-red-600' : 'text-green-700'} flex items-center gap-2`}> 
+            <p className={`${status === 'error' ? 'text-red-300' : 'text-green-300'} flex items-center gap-2 text-sm`}>
               {status === 'success' ? (
-                <span aria-hidden className="inline-block w-5 h-5 bg-green-600 rounded-full text-white text-xs flex items-center justify-center">✓</span>
+                <span aria-hidden className="inline-block">✓</span>
               ) : null}
               <span>{message}</span>
             </p>

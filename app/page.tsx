@@ -1,4 +1,3 @@
-
 "use client";
 import Banner from "./Banner";
 import DateFilterWidget from "./DateFilterWidget";
@@ -247,15 +246,15 @@ export default function Home() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-[#f7f7f7]">
+    <div className="w-full min-h-screen bg-white">
       {/* Navbar */}
-      <nav className="w-full fixed top-0 left-0 z-50 bg-white shadow border-b border-[#ececec]">
-        <div className={`container mx-auto px-8 flex justify-between items-center ${scrolled ? 'py-2' : 'py-6'} transition-all duration-300`}> 
+      <nav className="w-full fixed top-0 left-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#ececec]">
+        <div className={`container mx-auto px-8 flex justify-between items-center ${scrolled ? 'py-3' : 'py-5'} transition-all duration-300`}>
           <div className="flex items-center gap-3">
-            <img src="/logo-beb.png" alt="Logo" className={`${scrolled ? 'h-10 w-10' : 'h-14 w-14'} rounded-full border border-[#ececec] shadow transition-all duration-300`} />
-            <span className={`font-sans font-bold ${scrolled ? 'text-xl' : 'text-2xl'} text-[#4d5c3a] tracking-tight transition-all duration-300`}>B&B Paradise</span>
+            <img src="/logo-beb.png" alt="Logo" className={`${scrolled ? 'h-10 w-10' : 'h-12 w-12'} rounded-full border border-[#ececec] shadow transition-all duration-300`} />
+            <span className={`font-sans font-bold ${scrolled ? 'text-lg' : 'text-xl'} text-[#4d5c3a] tracking-tight transition-all duration-300`}>B&B Paradise</span>
           </div>
-          <ul className={`flex ${scrolled ? 'gap-4 text-sm' : 'gap-8 text-base'} font-semibold items-center transition-all duration-300`}> 
+          <ul className={`flex ${scrolled ? 'gap-6 text-sm' : 'gap-8 text-sm'} font-500 items-center transition-all duration-300`}>
             {[
               { href: '/', label: 'Home' },
               { href: '/camere', label: 'Camere' },
@@ -268,86 +267,87 @@ export default function Home() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className={`group text-[#4d5c3a] hover:text-[#bfae82] px-3 ${scrolled ? 'py-1' : 'py-2'} rounded transition-flex inline-flex flex-col items-center`}
+                  className="text-[#4d5c3a] hover:text-[#bfae82] px-2 py-2 transition-colors duration-300"
                 >
-                  {/* text rotates slightly on hover/focus */}
-                  <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">{item.label}</span>
-                  {/* small decorative bar that appears and tilts with the text */}
-                  <span className="block mt-1 h-0.5 w-6 bg-[#bfae82] opacity-0 transition-opacity duration-300 transform origin-center group-hover:opacity-100 group-focus:opacity-100 group-hover:-rotate-6 group-focus:-rotate-6"></span>
+                  {item.label}
                 </a>
               </li>
             ))}
           </ul>
         </div>
       </nav>
-      {/* Hero con ricerca */}
-      <main className="pt-32 pb-12 px-4 flex flex-col items-center min-h-screen font-sans">
-        {/* Hero con ricerca */}
-        <section className="w-full flex flex-col items-center justify-center py-20 bg-cover bg-center rounded-lg shadow-lg border border-[#ececec] mb-12" style={{backgroundImage: 'url(https://www.turismovieste.it/index/wp-content/uploads/2024/02/ostunialtramonto.jpg)'}}>
-          <div className="rounded-md px-8 py-10 shadow-md max-w-2xl w-full text-center hero-panel">
-            <h1 className="text-5xl md:text-6xl font-extrabold text-[#4d5c3a] mb-6 tracking-tight hero-title">Per un soggiorno da favola a Ostuni</h1>
-            <form className="flex flex-row flex-wrap items-center justify-center gap-6 bg-[#f7f7f7] rounded-xl shadow px-8 py-6 border border-[#ececec] max-w-2xl w-full mx-auto">
-              <div className="flex flex-col items-start w-40">
-                <label htmlFor="checkin" className="text-xs font-semibold text-[#4d5c3a] mb-1 ml-1">Check-in</label>
-                <input type="date" id="checkin" name="checkin" className="bg-white px-3 py-2 text-[#4d5c3a] text-lg rounded border border-[#ececec] focus:outline-none w-full" placeholder="Check-in" />
+      {/* Hero section */}
+      <main className="pt-32 pb-12 px-4 flex flex-col items-center font-sans">
+        <section className="w-full flex flex-col items-center justify-center py-24 bg-cover bg-center rounded-2xl overflow-hidden mb-16" style={{backgroundImage: 'url(https://www.turismovieste.it/index/wp-content/uploads/2024/02/ostunialtramonto.jpg)'}}>
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="relative z-10 px-6 py-16 max-w-3xl w-full text-center hero-panel">
+            <h1 className="text-5xl md:text-7xl font-bold text-[#4d5c3a] mb-4 tracking-tight hero-title">Per un soggiorno da favola</h1>
+            <p className="text-xl text-[#4d5c3a] mb-8 opacity-90">Nel cuore di Ostuni, tra ulivi e mare Adriatico</p>
+            <form className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 bg-white rounded-xl shadow-xl px-6 py-6 border border-[#ececec]">
+              <div className="flex flex-col items-start w-full sm:w-auto">
+                <label htmlFor="checkin" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Check-in</label>
+                <input type="date" id="checkin" name="checkin" className="bg-[#f5f5f5] px-4 py-2.5 text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full sm:w-auto transition-all" placeholder="Check-in" />
               </div>
-              <div className="flex flex-col items-start w-40">
-                <label htmlFor="checkout" className="text-xs font-semibold text-[#4d5c3a] mb-1 ml-1">Check-out</label>
-                <input type="date" id="checkout" name="checkout" className="bg-white px-3 py-2 text-[#4d5c3a] text-lg rounded border border-[#ececec] focus:outline-none w-full" placeholder="Check-out" />
+              <div className="flex flex-col items-start w-full sm:w-auto">
+                <label htmlFor="checkout" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Check-out</label>
+                <input type="date" id="checkout" name="checkout" className="bg-[#f5f5f5] px-4 py-2.5 text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full sm:w-auto transition-all" placeholder="Check-out" />
               </div>
-              <div className="flex flex-col items-start w-40">
-                <label htmlFor="guests" className="text-xs font-semibold text-[#4d5c3a] mb-1 ml-1">Ospiti</label>
-                <input type="number" id="guests" name="guests" min="1" max="10" className="bg-white px-3 py-2 text-[#4d5c3a] text-lg rounded border border-[#ececec] focus:outline-none w-full" placeholder="2" />
+              <div className="flex flex-col items-start w-full sm:w-auto">
+                <label htmlFor="guests" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Ospiti</label>
+                <input type="number" id="guests" name="guests" min="1" max="10" className="bg-[#f5f5f5] px-4 py-2.5 text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full sm:w-auto transition-all" placeholder="2" />
               </div>
-              <button type="submit" className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary font-bold px-8 py-3 rounded-xl shadow transition text-lg">
-                <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Cerca</span>
+              <button type="submit" className="btn-primary font-semibold px-8 py-2.5 rounded-lg shadow-lg hover:shadow-xl text-base w-full sm:w-auto">
+                Cerca disponibilità
               </button>
             </form>
           </div>
         </section>
 
         {/* Highlights / Trust badges */}
-        <section className="w-full max-w-7xl mx-auto mb-12 px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="highlight-card tilt-hover flex flex-col items-center text-center gap-4">
+        <section className="w-full max-w-6xl mx-auto mb-20 px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="highlight-card flex flex-col items-center text-center gap-5">
               <div className="badge-circle">
-                {/* tag icon */}
                 <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                   <path d="M21 11.5L12 2 2 12l9 9 10-9.5zM11 7a2 2 0 110-4 2 2 0 010 4z" />
                 </svg>
               </div>
-              <h4 className="high-title text-lg">Best price guarantee</h4>
-              <p className="high-desc text-sm">Prenota qui per il miglior prezzo disponibile.</p>
+              <div>
+                <h4 className="high-title">Miglior prezzo garantito</h4>
+                <p className="high-desc mt-2">Prenota direttamente per le migliori tariffe disponibili.</p>
+              </div>
             </div>
-            <div className="highlight-card tilt-hover flex flex-col items-center text-center gap-4">
+            <div className="highlight-card flex flex-col items-center text-center gap-5">
               <div className="badge-circle">
-                {/* refresh icon */}
                 <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                   <path d="M12 6V3L8 7l4 4V8c2.761 0 5 2.239 5 5 0 .637-.113 1.244-.318 1.797l1.518 1.518C18.83 15.079 19 14.061 19 13c0-3.866-3.134-7-7-7zM6.318 5.683L4.8 4.165C3.17 5.794 2 8.255 2 11c0 3.866 3.134 7 7 7v3l4-4-4-4v3c-2.761 0-5-2.239-5-5 0-.637.113-1.244.318-1.797z" />
                 </svg>
               </div>
-              <h4 className="high-title text-lg">Free cancellation</h4>
-              <p className="high-desc text-sm">Cancellazione gratuita fino a 48 ore prima.</p>
+              <div>
+                <h4 className="high-title">Cancellazione flessibile</h4>
+                <p className="high-desc mt-2">Cancella gratuitamente fino a 48 ore prima dell'arrivo.</p>
+              </div>
             </div>
-            <div className="highlight-card tilt-hover flex flex-col items-center text-center gap-4">
+            <div className="highlight-card flex flex-col items-center text-center gap-5">
               <div className="badge-circle">
-                {/* family/paw icon */}
                 <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                   <path d="M12 2c1.657 0 3 1.79 3 4s-1.343 4-3 4-3-1.79-3-4 1.343-4 3-4zm6.5 6c1.38 0 2.5 1.343 2.5 3s-1.12 3-2.5 3-2.5-1.343-2.5-3 1.12-3 2.5-3zM5.5 8c1.38 0 2.5 1.343 2.5 3S6.88 14 5.5 14 3 12.657 3 11s1.12-3 2.5-3zM12 10c3.866 0 7 3.134 7 7 0 0-3 3-7 3s-7-3-7-3c0-3.866 3.134-7 7-7z" />
                 </svg>
               </div>
-              <h4 className="high-title text-lg">Family & pet friendly</h4>
-              <p className="high-desc text-sm">Offerte e servizi pensati per famiglie e animali.</p>
+              <div>
+                <h4 className="high-title">Family & pet friendly</h4>
+                <p className="high-desc mt-2">Spazi e servizi pensati per famiglie e animali domestici.</p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Pacchetti - full width carousel */}
-        <section id="pacchetti" className="carousel-bleed">
+        <section id="pacchetti" className="carousel-bleed w-screen">
           <div className="carousel-wrapper">
-            <div className="text-center mb-6">
-              <h2 className="text-2xl md:text-3xl font-semibold">Pacchetti promozionali</h2>
-              <p className="text-sm text-gray-600">Offerte pensate per te — scorri per vedere tutte le stanze</p>
+            <div className="text-center mb-8 px-6 max-w-6xl mx-auto">
+              <h2 className="section-title">Pacchetti promozionali</h2>
+              <p className="section-subtitle">Scopri le nostre offerte speciali per il tuo soggiorno</p>
             </div>
 
             <div
@@ -361,24 +361,34 @@ export default function Home() {
                   const centerIndex = carouselIndex + Math.floor(visibleCount / 2)
                   const isActive = idx === centerIndex
                   return (
-                    <article key={p.id} className={`carousel-item relative card p-0 flex flex-col overflow-hidden min-h-[480px] ${isActive ? 'is-active' : ''}`}>
-                    <div className="w-full h-48 relative">
-                      <img src={`https://picsum.photos/seed/pacchetto-${p.id}/900/600`} alt={p.title} className="object-cover w-full h-full" />
-                      <span className="absolute top-4 right-4 bg-[#bfae82] text-white text-sm font-semibold px-4 py-1 rounded-md animate-pulse shadow">Offerta</span>
+                    <article key={p.id} className={`carousel-item relative card p-0 flex flex-col overflow-hidden ${isActive ? 'is-active' : ''}`}>
+                    <div className="w-full h-56 relative overflow-hidden">
+                      <img src={`https://picsum.photos/seed/pacchetto-${p.id}/900/600`} alt={p.title} className="object-cover w-full h-full transition-transform duration-500 hover:scale-110" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                      <span className="absolute top-4 right-4 bg-[#bfae82] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">OFFERTA</span>
                     </div>
-                    <div className="p-6 flex flex-col gap-4">
-                      <h3 className="text-2xl font-semibold text-[#4d5c3a]">{p.title}</h3>
-                      <ul className="text-[#4d5c3a] text-lg mb-2 list-disc ml-6">
-                        <li>Notte confortevole</li>
-                        <li>Colazione inclusa</li>
-                        <li>Servizi dedicati</li>
+                    <div className="p-6 flex flex-col gap-4 flex-1">
+                      <h3 className="text-xl font-bold text-[#4d5c3a]">{p.title}</h3>
+                      <ul className="text-[#4d5c3a] text-sm space-y-2">
+                        <li className="flex items-center gap-2">
+                          <span className="text-[#bfae82] font-bold">✓</span>
+                          <span>Notte confortevole</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="text-[#bfae82] font-bold">✓</span>
+                          <span>Colazione inclusa</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className="text-[#bfae82] font-bold">✓</span>
+                          <span>Servizi dedicati</span>
+                        </li>
                       </ul>
-                      <div className="flex items-center gap-3">
-                        <span className="inline-flex btn-primary px-4 py-2 rounded font-bold text-lg">{p.price}</span>
-                        <span className="text-base text-[#bfae82]">Offerta limitata</span>
+                      <div className="flex items-center gap-3 mt-auto pt-2">
+                        <span className="text-3xl font-bold text-[#bfae82]">{p.price}</span>
+                        <span className="text-xs text-[#6b7460] font-medium">per notte</span>
                       </div>
-                      <button className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary font-semibold px-6 py-2 rounded-md shadow transition text-base">
-                        <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Dettagli</span>
+                      <button className="btn-primary font-semibold px-4 py-2.5 rounded-lg shadow-md hover:shadow-lg text-sm w-full transition-all">
+                        Vedi dettagli
                       </button>
                     </div>
                     </article>
@@ -399,16 +409,11 @@ export default function Home() {
         {/* Offerte ora mostrate come popup bottom (dismissible) */}
 
         {/* Recensioni */}
-        <section className="testimonial-bleed mb-20">
+        <section className="testimonial-bleed mb-20 w-screen">
           <div className="testimonial-wrapper">
-            {/* ============================ */}
-            {/* Testimonials / "Cosa dicono di noi" */}
-            {/* Structured for accessibility and easy styling. Each testimonial is
-                an article (role=article) with a visible avatar, name/source/date,
-                a star rating (visual only) and the quoted text. */}
-            <div className="text-center mb-6">
-              <h2 className="text-4xl font-extrabold text-[#4d5c3a]">Cosa dicono di noi</h2>
-              <p className="text-sm text-gray-600">Recensioni reali dai nostri ospiti — scorri per leggere.</p>
+            <div className="text-center mb-8 px-6 max-w-6xl mx-auto">
+              <h2 className="section-title">Cosa dicono i nostri ospiti</h2>
+              <p className="section-subtitle">Testimonianze autentiche da Booking.com, Google e Tripadvisor</p>
             </div>
 
             <div className="relative">
@@ -460,8 +465,11 @@ export default function Home() {
         <Gallery />
 
         {/* Staff */}
-        <section className="w-full max-w-6xl mx-auto mb-20">
-          <h2 className="text-4xl font-extrabold text-[#4d5c3a] mb-10 text-center">Chi siamo</h2>
+        <section className="w-full max-w-6xl mx-auto mb-24 px-6">
+          <div className="text-center mb-12">
+            <h2 className="section-title">Il nostro team</h2>
+            <p className="section-subtitle">Persone appassionate al tuo benessere</p>
+          </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
           <div className="card p-8 flex flex-col items-center min-h-[300px]">
               <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Staff" className="rounded-full w-28 h-28 border border-[#ececec] shadow-lg mb-4" />
@@ -485,8 +493,11 @@ export default function Home() {
         </section>
 
         {/* Servizi */}
-        <section className="w-full max-w-6xl mx-auto mb-20">
-          <h2 className="text-4xl font-extrabold text-[#4d5c3a] mb-10 text-center">I nostri servizi</h2>
+        <section className="w-full max-w-6xl mx-auto mb-24 px-6">
+          <div className="text-center mb-12">
+            <h2 className="section-title">I nostri servizi</h2>
+            <p className="section-subtitle">Tutto quello che ti serve per una vacanza perfetta</p>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
             <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
               <span className="text-4xl text-[#bfae82]">📶</span>
@@ -531,12 +542,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* (Map removed from here — will render full-width just before footer) */}
-
-        {/* Contatti (moved to bottom) */}
         {/* FAQ */}
-        <section className="w-full max-w-6xl mx-auto mb-16">
-          <h2 className="text-3xl font-extrabold text-[#4d5c3a] mb-6 text-center">Domande frequenti</h2>
+        <section className="w-full max-w-6xl mx-auto mb-24 px-6">
+          <div className="text-center mb-12">
+            <h2 className="section-title">Domande frequenti</h2>
+            <p className="section-subtitle">Risposte alle domande più comuni</p>
+          </div>
           <div className="space-y-4">
             {/* Accessible accordion: uses local state to control open panel for keyboard/screen-reader friendliness */}
             {[
@@ -553,10 +564,12 @@ export default function Home() {
       </main>
       {/* Section: where we are + map */}
       <section className="w-full mb-0">
-        <div className="w-full bg-gradient-to-b from-[#f7f6f1] to-[#fbf9f3] relative py-16">
-          <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#27402b] tracking-tight">Dove siamo</h2>
-            <p className="mt-3 text-base text-[#55664a] max-w-2xl mx-auto">Scopri la nostra posizione e i B&B vicini, con informazioni pratiche per arrivare e muoverti.</p>
+        <div className="w-full bg-gradient-to-b from-white to-[#fbf9f3] relative py-20">
+          <div className="max-w-6xl mx-auto px-6 relative z-10">
+            <div className="text-center mb-12">
+              <h2 className="section-title">Dove siamo</h2>
+              <p className="section-subtitle max-w-2xl mx-auto">La nostra posizione nel cuore di Ostuni, tra mare e storia</p>
+            </div>
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { name: 'B&B La Terrazza', icon: '🏠', address: 'Via Mare 2, Ostuni', distance: '0.4 km', query: 'Via Mare 2 Ostuni' },
@@ -639,95 +652,91 @@ export default function Home() {
       </section>
 
       {/* Footer with embedded Contatti */}
-      <footer role="contentinfo" className="w-full bg-[#f9f7f3] border-t border-[#efe6d6] py-12 text-[#4d5c3a]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+      <footer role="contentinfo" className="w-full bg-[#4d5c3a] text-white border-t border-[#3f4f36] py-16 text-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 items-start">
             <div className="md:col-span-1">
-              <img src="/logo-beb.png" alt="Logo" className="h-16 w-16 rounded-full border border-[#ececec] shadow mb-4" />
-              <div className="font-bold text-lg">B&B Paradise</div>
-              <div className="text-sm text-[#55664a] mt-2">Accoglienza autentica tra ulivi e mare.</div>
+              <img src="/logo-beb.png" alt="Logo" className="h-16 w-16 rounded-full border border-white/20 shadow mb-4" />
+              <div className="font-bold text-xl text-white">B&B Paradise</div>
+              <div className="text-sm text-[#d4c4a8] mt-2">Accoglienza autentica tra ulivi e mare.</div>
 
-              {/* Link utili spostati qui tra il nome e il copyright */}
-              <div className="mt-4">
-                <div className="font-semibold">Link utili</div>
-                <div className="flex flex-col text-sm text-[#55664a] gap-1 mt-2">
-                  <a href="/camere" className="hover:text-[#27402b]">Camere</a>
-                  <a href="/prenota" className="hover:text-[#27402b]">Prenota</a>
-                  <a href="/prenota-pacchetto" className="hover:text-[#27402b]">Pacchetti</a>
-                  <a href="#faq" className="hover:text-[#27402b]">FAQ</a>
+              <div className="mt-6">
+                <div className="font-semibold text-white text-sm uppercase tracking-wide">Link utili</div>
+                <div className="flex flex-col text-sm text-[#d4c4a8] gap-2 mt-3">
+                  <a href="/camere" className="hover:text-[#bfae82] transition-colors">Camere</a>
+                  <a href="/prenota" className="hover:text-[#bfae82] transition-colors">Prenota</a>
+                  <a href="/prenota-pacchetto" className="hover:text-[#bfae82] transition-colors">Pacchetti</a>
+                  <a href="#faq" className="hover:text-[#bfae82] transition-colors">FAQ</a>
                 </div>
               </div>
 
-              <div className="mt-4 text-sm">© 2025 B&B Paradise</div>
+              <div className="mt-6 text-sm text-[#d4c4a8]">© 2025 B&B Paradise</div>
             </div>
             <div className="md:col-span-2">
-              <h4 className="font-semibold text-[#4d5c3a] mb-3">Contatti</h4>
-              <div className="space-y-4 text-[#4d5c3a]">
+              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Contatti</h4>
+              <div className="space-y-4 text-white">
                 <div className="flex flex-col">
-                  <div className="font-semibold">Indirizzo</div>
-                  <div className="text-sm text-[#55664a]">Via Roma 12, 72017 Ostuni (BR), Italia</div>
+                  <div className="font-semibold text-white">Indirizzo</div>
+                  <div className="text-sm text-[#d4c4a8] mt-1">Via Roma 12, 72017 Ostuni (BR), Italia</div>
                 </div>
                 <div className="flex flex-col">
-                  <div className="font-semibold">Telefono</div>
-                  <div><a href="tel:+390801234567" className="font-semibold text-[#4d5c3a]" aria-label="Chiama +39 080 1234567">+39 080 1234567</a></div>
+                  <div className="font-semibold text-white">Telefono</div>
+                  <div><a href="tel:+390801234567" className="font-semibold text-[#bfae82] hover:text-white transition-colors" aria-label="Chiama +39 080 1234567">+39 080 1234567</a></div>
                 </div>
                 <div className="flex flex-col">
-                  <div className="font-semibold">Email</div>
-                  <div><a href="mailto:info@bbparadise.it" className="text-sm text-[#55664a]" aria-label="Invia una email a info@bbparadise.it">info@bbparadise.it</a></div>
+                  <div className="font-semibold text-white">Email</div>
+                  <div><a href="mailto:info@bbparadise.it" className="text-sm text-[#d4c4a8] hover:text-[#bfae82] transition-colors" aria-label="Invia una email a info@bbparadise.it">info@bbparadise.it</a></div>
                 </div>
 
                 <div>
-                  <div className="font-semibold">Orari</div>
-                  <div className="text-sm text-[#55664a]">Reception: 08:00 — 22:00 · Check-in 15:00 · Check-out 11:00</div>
+                  <div className="font-semibold text-white">Orari</div>
+                  <div className="text-sm text-[#d4c4a8]">Reception: 08:00 — 22:00 · Check-in 15:00 · Check-out 11:00</div>
                 </div>
 
-                <div className="flex items-center gap-3 mt-2">
-                  {/* Simple inline SVG icons (non-branded) */}
-                  <a href="#" aria-label="Facebook" className="text-[#4d5c3a] hover:text-[#bfae82]" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <div className="flex items-center gap-3 mt-4">
+                  <a href="#" aria-label="Facebook" className="text-[#d4c4a8] hover:text-[#bfae82] transition-colors" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                       <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.06 5.66 21.16 10.44 22v-7.03H8.07v-2.9h2.37V9.41c0-2.35 1.4-3.64 3.54-3.64 1.02 0 2.09.18 2.09.18v2.3h-1.18c-1.16 0-1.52.72-1.52 1.46v1.75h2.58l-.41 2.9h-2.17V22C18.34 21.16 22 17.06 22 12.07z" />
                     </svg>
                   </a>
-                  <a href="#" aria-label="Instagram" className="text-[#4d5c3a] hover:text-[#bfae82]" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <a href="#" aria-label="Instagram" className="text-[#d4c4a8] hover:text-[#bfae82] transition-colors" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                       <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" />
                       <path d="M16 11.37A4 4 0 1 1 12.63 8" stroke="currentColor" />
                       <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
                     </svg>
                   </a>
-                  <a href="#" aria-label="Tripadvisor" className="text-[#4d5c3a] hover:text-[#bfae82]" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <a href="#" aria-label="Tripadvisor" className="text-[#d4c4a8] hover:text-[#bfae82] transition-colors" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM8.5 8.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM7 15.5c0-1.66 3.59-3 5-3s5 1.34 5 3v.5H7v-.5z" />
                     </svg>
                   </a>
                 </div>
-
-                {/* Link utili moved to the left column per user request */}
               </div>
             </div>
             <div className="md:col-span-1">
-              <h4 className="font-semibold text-[#4d5c3a] mb-3">Scrivici</h4>
-              <form className="bg-white p-4 rounded-lg border border-[#ececec] shadow-sm" onSubmit={(e)=>{e.preventDefault(); alert('Grazie! Ti risponderemo presto.');}}>
-                <input required type="text" className="w-full px-3 py-2 rounded border border-[#ececec] mb-3" placeholder="Nome" />
-                <input required type="email" className="w-full px-3 py-2 rounded border border-[#ececec] mb-3" placeholder="Email" />
-                <textarea required className="w-full px-3 py-2 rounded border border-[#ececec] mb-3" rows={3} placeholder="Messaggio"></textarea>
-                <div className="flex items-center justify-between gap-3">
-                  <button type="submit" className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary px-4 py-2 rounded-md font-semibold">
-                    <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Invia</span>
+              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Contattaci</h4>
+              <form className="bg-white/10 backdrop-blur-sm p-5 rounded-lg border border-white/20" onSubmit={(e)=>{e.preventDefault(); alert('Grazie! Ti risponderemo presto.');}}>
+                <input required type="text" className="w-full px-3 py-2 rounded bg-white/90 border border-white/30 mb-3 text-[#4d5c3a] placeholder-[#8a8f80] focus:outline-none focus:ring-2 focus:ring-[#bfae82]" placeholder="Nome" />
+                <input required type="email" className="w-full px-3 py-2 rounded bg-white/90 border border-white/30 mb-3 text-[#4d5c3a] placeholder-[#8a8f80] focus:outline-none focus:ring-2 focus:ring-[#bfae82]" placeholder="Email" />
+                <textarea required className="w-full px-3 py-2 rounded bg-white/90 border border-white/30 mb-3 text-[#4d5c3a] placeholder-[#8a8f80] focus:outline-none focus:ring-2 focus:ring-[#bfae82]" rows={3} placeholder="Messaggio"></textarea>
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <button type="submit" className="bg-[#bfae82] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#a88f5f] transition-all shadow-lg">
+                    Invia
                   </button>
-                  <a target="_blank" rel="noreferrer noopener" href="https://wa.me/393339876543?text=Vorrei%20prenotare" className="inline-flex items-center gap-2 text-[#4d5c3a] px-3 py-2 rounded-md border border-[#ececec] hover:bg-[#fffaf0]" aria-label="Apri chat WhatsApp">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <a target="_blank" rel="noreferrer noopener" href="https://wa.me/393339876543?text=Vorrei%20prenotare" className="inline-flex items-center gap-2 text-[#bfae82] px-3 py-2 rounded-lg border border-[#bfae82]/30 hover:bg-white/10 transition-all" aria-label="Apri chat WhatsApp">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                       <path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.373 0 .001 5.373.001 12c0 2.116.554 4.183 1.605 6.004L0 24l6.293-1.629A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.64-.31-3.204-.94-4.617zM12 21.5c-1.8 0-3.507-.5-5.003-1.438l-.36-.205-3.738.967.998-3.646-.235-.372A9.5 9.5 0 1 1 21.5 12 9.48 9.48 0 0 1 12 21.5z"/>
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.15-.198.297-.768.966-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.885-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.148-.173.198-.297.297-.497.099-.198.05-.372-.025-.52-.074-.148-.672-1.612-.92-2.21-.242-.579-.487-.5-.672-.51l-.573-.01c-.198 0-.52.074-.793.372s-1.04 1.016-1.04 2.479 1.064 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487 2.98 1.289 2.98.859 3.516.806.538-.05 1.758-.718 2.006-1.41.248-.69.248-1.28.173-1.41-.074-.13-.272-.198-.57-.347z"/>
                     </svg>
-                    <span className="font-semibold">WhatsApp</span>
+                    <span className="font-semibold text-sm">WhatsApp</span>
                   </a>
                 </div>
-                <p className="text-xs text-[#8a8f80] mt-2">I tuoi dati verranno usati solo per contattarti. Consulta la nostra <a href="#" className="underline">privacy policy</a>.</p>
+                <p className="text-xs text-[#d4c4a8] mt-3">I tuoi dati verranno usati solo per contattarti.</p>
               </form>
             </div>
           </div>
-          <div className="mt-8 border-t border-[#efe6d6] pt-6 text-center text-sm text-[#55664a]">
+          <div className="mt-10 border-t border-white/10 pt-8 text-center text-sm text-[#d4c4a8]">
             <span>Powered by Next.js · Design inspired by bed-and-breakfast.it</span>
           </div>
         </div>
