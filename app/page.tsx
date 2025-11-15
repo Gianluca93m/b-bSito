@@ -564,10 +564,12 @@ export default function Home() {
       </main>
       {/* Section: where we are + map */}
       <section className="w-full mb-0">
-        <div className="w-full bg-gradient-to-b from-[#f7f6f1] to-[#fbf9f3] relative py-16">
-          <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#27402b] tracking-tight">Dove siamo</h2>
-            <p className="mt-3 text-base text-[#55664a] max-w-2xl mx-auto">Scopri la nostra posizione e i B&B vicini, con informazioni pratiche per arrivare e muoverti.</p>
+        <div className="w-full bg-gradient-to-b from-white to-[#fbf9f3] relative py-20">
+          <div className="max-w-6xl mx-auto px-6 relative z-10">
+            <div className="text-center mb-12">
+              <h2 className="section-title">Dove siamo</h2>
+              <p className="section-subtitle max-w-2xl mx-auto">La nostra posizione nel cuore di Ostuni, tra mare e storia</p>
+            </div>
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { name: 'B&B La Terrazza', icon: '🏠', address: 'Via Mare 2, Ostuni', distance: '0.4 km', query: 'Via Mare 2 Ostuni' },
