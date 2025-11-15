@@ -236,6 +236,16 @@ export default function Home() {
     return () => obs.disconnect()
   }, [])
 
+  // reference for the horizontal testimonial track (to implement prev/next)
+  const testimonialTrackRef = useRef<HTMLDivElement | null>(null)
+
+  function scrollTestimonial(by: number) {
+    const el = testimonialTrackRef.current
+    if (!el) return
+    const amount = Math.round(el.clientWidth * 0.7) * by
+    el.scrollBy({ left: amount, behavior: 'smooth' })
+  }
+
   return (
     <div className="w-full min-h-screen bg-[#f7f7f7]">
       {/* Navbar */}
@@ -389,39 +399,60 @@ export default function Home() {
         {/* Offerte ora mostrate come popup bottom (dismissible) */}
 
         {/* Recensioni */}
-        <section className="w-full max-w-6xl mx-auto mb-20">
-          <h2 className="text-4xl font-extrabold text-[#4d5c3a] mb-10 text-center">Cosa dicono di noi</h2>
-          {/* ============================ */}
-          {/* Testimonials / "Cosa dicono di noi" */}
-          {/* Structured for accessibility and easy styling. Each testimonial is
-              an article (role=article) with a visible avatar, name/source/date,
-              a star rating (visual only) and the quoted text. */}
-          <div className="testimonial-grid">
-            {/* Render testimonials dynamically from the testimonials array */}
-            {testimonials.map((t) => (
-              <article key={t.id} role="article" aria-label={`Recensione di ${t.name}`} className="testimonial-card">
-                <div className="testimonial-header">
-                  <img className="testimonial-avatar" src={t.avatar} alt={`Avatar ${t.name}`} />
-                  <div>
-                    <div className="testimonial-name">{t.name}</div>
-                    <div className="testimonial-source">{t.source} · {t.date}</div>
+        <section className="testimonial-bleed mb-20">
+          <div className="testimonial-wrapper">
+            {/* ============================ */}
+            {/* Testimonials / "Cosa dicono di noi" */}
+            {/* Structured for accessibility and easy styling. Each testimonial is
+                an article (role=article) with a visible avatar, name/source/date,
+                a star rating (visual only) and the quoted text. */}
+            <div className="text-center mb-6">
+              <h2 className="text-4xl font-extrabold text-[#4d5c3a]">Cosa dicono di noi</h2>
+              <p className="text-sm text-gray-600">Recensioni reali dai nostri ospiti — scorri per leggere.</p>
+            </div>
+
+            <div className="relative">
+              <div ref={testimonialTrackRef} className="testimonial-track" role="list">
+                {testimonials.map((t, idx) => (
+                  <div key={t.id} className="testimonial-item" role="listitem">
+                    <article
+                      role="article"
+                      aria-label={`Recensione di ${t.name}`}
+                      className="testimonial-card"
+                      style={{ transitionDelay: `${idx * 80}ms` }}
+                    >
+                      <div className="testimonial-header">
+                        <img className="testimonial-avatar" src={t.avatar} alt={`Avatar ${t.name}`} />
+                        <div>
+                          <div className="testimonial-name">{t.name}</div>
+                          <div className="testimonial-source">{t.source} · {t.date}</div>
+                        </div>
+                      </div>
+
+                      <div className="testimonial-stars" aria-hidden>
+                        {Array.from({ length: t.rating }).map((_, i) => (
+                          <svg key={i} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                            <path d="M12 .587l3.668 7.431L24 9.748l-6 5.847 1.416 8.266L12 19.771 4.584 23.861 6 15.595 0 9.748l8.332-1.73z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <span className="sr-only">{t.rating} su 5 stelle</span>
+
+                      <p className="testimonial-quote">{t.text}</p>
+
+                      <div className="testimonial-cta">
+                        <a href="#" onClick={(e)=>{e.preventDefault();}} aria-label={`Vedi tutte le recensioni di ${t.name}`}>Leggi tutte le recensioni</a>
+                      </div>
+                    </article>
                   </div>
-                </div>
+                ))}
+              </div>
 
-                <div className="testimonial-stars" aria-hidden>
-                  {Array.from({ length: t.rating }).map((_, i) => (<span key={i}>★</span>))}
-                </div>
-                {/* Numeric rating for screen readers */}
-                <span className="sr-only">{t.rating} su 5 stelle</span>
-
-                <p className="testimonial-quote">{t.text}</p>
-              </article>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <a href="#" className="inline-block group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary font-bold px-8 py-3 rounded-full shadow-lg transition text-lg">
-              <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Leggi tutte</span>
-            </a>
+              <div className="absolute right-6 top-1/2 transform -translate-y-1/2 testimonial-controls" aria-hidden>
+                <button onClick={() => scrollTestimonial(-1)} aria-label="Scorri indietro">◀</button>
+                <button onClick={() => scrollTestimonial(1)} aria-label="Scorri avanti">▶</button>
+              </div>
+            </div>
           </div>
         </section>
 
