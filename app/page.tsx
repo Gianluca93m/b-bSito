@@ -343,11 +343,11 @@ export default function Home() {
         </section>
 
         {/* Pacchetti - full width carousel */}
-        <section id="pacchetti" className="carousel-bleed">
+        <section id="pacchetti" className="carousel-bleed w-screen">
           <div className="carousel-wrapper">
-            <div className="text-center mb-6">
-              <h2 className="text-2xl md:text-3xl font-semibold">Pacchetti promozionali</h2>
-              <p className="text-sm text-gray-600">Offerte pensate per te — scorri per vedere tutte le stanze</p>
+            <div className="text-center mb-8 px-6 max-w-6xl mx-auto">
+              <h2 className="section-title">Pacchetti promozionali</h2>
+              <p className="section-subtitle">Scopri le nostre offerte speciali per il tuo soggiorno</p>
             </div>
 
             <div
