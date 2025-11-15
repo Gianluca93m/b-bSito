@@ -465,8 +465,11 @@ export default function Home() {
         <Gallery />
 
         {/* Staff */}
-        <section className="w-full max-w-6xl mx-auto mb-20">
-          <h2 className="text-4xl font-extrabold text-[#4d5c3a] mb-10 text-center">Chi siamo</h2>
+        <section className="w-full max-w-6xl mx-auto mb-24 px-6">
+          <div className="text-center mb-12">
+            <h2 className="section-title">Il nostro team</h2>
+            <p className="section-subtitle">Persone appassionate al tuo benessere</p>
+          </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
           <div className="card p-8 flex flex-col items-center min-h-[300px]">
               <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Staff" className="rounded-full w-28 h-28 border border-[#ececec] shadow-lg mb-4" />
