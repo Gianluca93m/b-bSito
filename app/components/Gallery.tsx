@@ -27,9 +27,12 @@ export default function Gallery() {
   }, [lightboxOpen]);
 
   return (
-    <section className="w-full mb-24 bg-transparent">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-extrabold text-[#4d5c3a] mb-10 text-center">Gallery</h2>
+    <section className="w-full mb-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="section-title">Galleria</h2>
+          <p className="section-subtitle">Scopri gli spazi e le camere del nostro B&B</p>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {galleryImages.map((img, i) => (
             <button
