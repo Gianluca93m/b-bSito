@@ -409,16 +409,11 @@ export default function Home() {
         {/* Offerte ora mostrate come popup bottom (dismissible) */}
 
         {/* Recensioni */}
-        <section className="testimonial-bleed mb-20">
+        <section className="testimonial-bleed mb-20 w-screen">
           <div className="testimonial-wrapper">
-            {/* ============================ */}
-            {/* Testimonials / "Cosa dicono di noi" */}
-            {/* Structured for accessibility and easy styling. Each testimonial is
-                an article (role=article) with a visible avatar, name/source/date,
-                a star rating (visual only) and the quoted text. */}
-            <div className="text-center mb-6">
-              <h2 className="text-4xl font-extrabold text-[#4d5c3a]">Cosa dicono di noi</h2>
-              <p className="text-sm text-gray-600">Recensioni reali dai nostri ospiti — scorri per leggere.</p>
+            <div className="text-center mb-8 px-6 max-w-6xl mx-auto">
+              <h2 className="section-title">Cosa dicono i nostri ospiti</h2>
+              <p className="section-subtitle">Testimonianze autentiche da Booking.com, Google e Tripadvisor</p>
             </div>
 
             <div className="relative">
