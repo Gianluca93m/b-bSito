@@ -654,93 +654,89 @@ export default function Home() {
       {/* Footer with embedded Contatti */}
       <footer role="contentinfo" className="w-full bg-[#4d5c3a] text-white border-t border-[#3f4f36] py-16 text-white">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 items-start">
             <div className="md:col-span-1">
-              <img src="/logo-beb.png" alt="Logo" className="h-16 w-16 rounded-full border border-[#ececec] shadow mb-4" />
-              <div className="font-bold text-lg">B&B Paradise</div>
-              <div className="text-sm text-[#55664a] mt-2">Accoglienza autentica tra ulivi e mare.</div>
+              <img src="/logo-beb.png" alt="Logo" className="h-16 w-16 rounded-full border border-white/20 shadow mb-4" />
+              <div className="font-bold text-xl text-white">B&B Paradise</div>
+              <div className="text-sm text-[#d4c4a8] mt-2">Accoglienza autentica tra ulivi e mare.</div>
 
-              {/* Link utili spostati qui tra il nome e il copyright */}
-              <div className="mt-4">
-                <div className="font-semibold">Link utili</div>
-                <div className="flex flex-col text-sm text-[#55664a] gap-1 mt-2">
-                  <a href="/camere" className="hover:text-[#27402b]">Camere</a>
-                  <a href="/prenota" className="hover:text-[#27402b]">Prenota</a>
-                  <a href="/prenota-pacchetto" className="hover:text-[#27402b]">Pacchetti</a>
-                  <a href="#faq" className="hover:text-[#27402b]">FAQ</a>
+              <div className="mt-6">
+                <div className="font-semibold text-white text-sm uppercase tracking-wide">Link utili</div>
+                <div className="flex flex-col text-sm text-[#d4c4a8] gap-2 mt-3">
+                  <a href="/camere" className="hover:text-[#bfae82] transition-colors">Camere</a>
+                  <a href="/prenota" className="hover:text-[#bfae82] transition-colors">Prenota</a>
+                  <a href="/prenota-pacchetto" className="hover:text-[#bfae82] transition-colors">Pacchetti</a>
+                  <a href="#faq" className="hover:text-[#bfae82] transition-colors">FAQ</a>
                 </div>
               </div>
 
-              <div className="mt-4 text-sm">© 2025 B&B Paradise</div>
+              <div className="mt-6 text-sm text-[#d4c4a8]">© 2025 B&B Paradise</div>
             </div>
             <div className="md:col-span-2">
-              <h4 className="font-semibold text-[#4d5c3a] mb-3">Contatti</h4>
-              <div className="space-y-4 text-[#4d5c3a]">
+              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Contatti</h4>
+              <div className="space-y-4 text-white">
                 <div className="flex flex-col">
-                  <div className="font-semibold">Indirizzo</div>
-                  <div className="text-sm text-[#55664a]">Via Roma 12, 72017 Ostuni (BR), Italia</div>
+                  <div className="font-semibold text-white">Indirizzo</div>
+                  <div className="text-sm text-[#d4c4a8] mt-1">Via Roma 12, 72017 Ostuni (BR), Italia</div>
                 </div>
                 <div className="flex flex-col">
-                  <div className="font-semibold">Telefono</div>
-                  <div><a href="tel:+390801234567" className="font-semibold text-[#4d5c3a]" aria-label="Chiama +39 080 1234567">+39 080 1234567</a></div>
+                  <div className="font-semibold text-white">Telefono</div>
+                  <div><a href="tel:+390801234567" className="font-semibold text-[#bfae82] hover:text-white transition-colors" aria-label="Chiama +39 080 1234567">+39 080 1234567</a></div>
                 </div>
                 <div className="flex flex-col">
-                  <div className="font-semibold">Email</div>
-                  <div><a href="mailto:info@bbparadise.it" className="text-sm text-[#55664a]" aria-label="Invia una email a info@bbparadise.it">info@bbparadise.it</a></div>
+                  <div className="font-semibold text-white">Email</div>
+                  <div><a href="mailto:info@bbparadise.it" className="text-sm text-[#d4c4a8] hover:text-[#bfae82] transition-colors" aria-label="Invia una email a info@bbparadise.it">info@bbparadise.it</a></div>
                 </div>
 
                 <div>
-                  <div className="font-semibold">Orari</div>
-                  <div className="text-sm text-[#55664a]">Reception: 08:00 — 22:00 · Check-in 15:00 · Check-out 11:00</div>
+                  <div className="font-semibold text-white">Orari</div>
+                  <div className="text-sm text-[#d4c4a8]">Reception: 08:00 — 22:00 · Check-in 15:00 · Check-out 11:00</div>
                 </div>
 
-                <div className="flex items-center gap-3 mt-2">
-                  {/* Simple inline SVG icons (non-branded) */}
-                  <a href="#" aria-label="Facebook" className="text-[#4d5c3a] hover:text-[#bfae82]" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <div className="flex items-center gap-3 mt-4">
+                  <a href="#" aria-label="Facebook" className="text-[#d4c4a8] hover:text-[#bfae82] transition-colors" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                       <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.06 5.66 21.16 10.44 22v-7.03H8.07v-2.9h2.37V9.41c0-2.35 1.4-3.64 3.54-3.64 1.02 0 2.09.18 2.09.18v2.3h-1.18c-1.16 0-1.52.72-1.52 1.46v1.75h2.58l-.41 2.9h-2.17V22C18.34 21.16 22 17.06 22 12.07z" />
                     </svg>
                   </a>
-                  <a href="#" aria-label="Instagram" className="text-[#4d5c3a] hover:text-[#bfae82]" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <a href="#" aria-label="Instagram" className="text-[#d4c4a8] hover:text-[#bfae82] transition-colors" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                       <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" />
                       <path d="M16 11.37A4 4 0 1 1 12.63 8" stroke="currentColor" />
                       <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
                     </svg>
                   </a>
-                  <a href="#" aria-label="Tripadvisor" className="text-[#4d5c3a] hover:text-[#bfae82]" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <a href="#" aria-label="Tripadvisor" className="text-[#d4c4a8] hover:text-[#bfae82] transition-colors" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM8.5 8.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM7 15.5c0-1.66 3.59-3 5-3s5 1.34 5 3v.5H7v-.5z" />
                     </svg>
                   </a>
                 </div>
-
-                {/* Link utili moved to the left column per user request */}
               </div>
             </div>
             <div className="md:col-span-1">
-              <h4 className="font-semibold text-[#4d5c3a] mb-3">Scrivici</h4>
-              <form className="bg-white p-4 rounded-lg border border-[#ececec] shadow-sm" onSubmit={(e)=>{e.preventDefault(); alert('Grazie! Ti risponderemo presto.');}}>
-                <input required type="text" className="w-full px-3 py-2 rounded border border-[#ececec] mb-3" placeholder="Nome" />
-                <input required type="email" className="w-full px-3 py-2 rounded border border-[#ececec] mb-3" placeholder="Email" />
-                <textarea required className="w-full px-3 py-2 rounded border border-[#ececec] mb-3" rows={3} placeholder="Messaggio"></textarea>
-                <div className="flex items-center justify-between gap-3">
-                  <button type="submit" className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary px-4 py-2 rounded-md font-semibold">
-                    <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Invia</span>
+              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Contattaci</h4>
+              <form className="bg-white/10 backdrop-blur-sm p-5 rounded-lg border border-white/20" onSubmit={(e)=>{e.preventDefault(); alert('Grazie! Ti risponderemo presto.');}}>
+                <input required type="text" className="w-full px-3 py-2 rounded bg-white/90 border border-white/30 mb-3 text-[#4d5c3a] placeholder-[#8a8f80] focus:outline-none focus:ring-2 focus:ring-[#bfae82]" placeholder="Nome" />
+                <input required type="email" className="w-full px-3 py-2 rounded bg-white/90 border border-white/30 mb-3 text-[#4d5c3a] placeholder-[#8a8f80] focus:outline-none focus:ring-2 focus:ring-[#bfae82]" placeholder="Email" />
+                <textarea required className="w-full px-3 py-2 rounded bg-white/90 border border-white/30 mb-3 text-[#4d5c3a] placeholder-[#8a8f80] focus:outline-none focus:ring-2 focus:ring-[#bfae82]" rows={3} placeholder="Messaggio"></textarea>
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <button type="submit" className="bg-[#bfae82] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#a88f5f] transition-all shadow-lg">
+                    Invia
                   </button>
-                  <a target="_blank" rel="noreferrer noopener" href="https://wa.me/393339876543?text=Vorrei%20prenotare" className="inline-flex items-center gap-2 text-[#4d5c3a] px-3 py-2 rounded-md border border-[#ececec] hover:bg-[#fffaf0]" aria-label="Apri chat WhatsApp">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <a target="_blank" rel="noreferrer noopener" href="https://wa.me/393339876543?text=Vorrei%20prenotare" className="inline-flex items-center gap-2 text-[#bfae82] px-3 py-2 rounded-lg border border-[#bfae82]/30 hover:bg-white/10 transition-all" aria-label="Apri chat WhatsApp">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                       <path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.373 0 .001 5.373.001 12c0 2.116.554 4.183 1.605 6.004L0 24l6.293-1.629A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12 0-1.64-.31-3.204-.94-4.617zM12 21.5c-1.8 0-3.507-.5-5.003-1.438l-.36-.205-3.738.967.998-3.646-.235-.372A9.5 9.5 0 1 1 21.5 12 9.48 9.48 0 0 1 12 21.5z"/>
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.15-.198.297-.768.966-.94 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.885-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.148-.173.198-.297.297-.497.099-.198.05-.372-.025-.52-.074-.148-.672-1.612-.92-2.21-.242-.579-.487-.5-.672-.51l-.573-.01c-.198 0-.52.074-.793.372s-1.04 1.016-1.04 2.479 1.064 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487 2.98 1.289 2.98.859 3.516.806.538-.05 1.758-.718 2.006-1.41.248-.69.248-1.28.173-1.41-.074-.13-.272-.198-.57-.347z"/>
                     </svg>
-                    <span className="font-semibold">WhatsApp</span>
+                    <span className="font-semibold text-sm">WhatsApp</span>
                   </a>
                 </div>
-                <p className="text-xs text-[#8a8f80] mt-2">I tuoi dati verranno usati solo per contattarti. Consulta la nostra <a href="#" className="underline">privacy policy</a>.</p>
+                <p className="text-xs text-[#d4c4a8] mt-3">I tuoi dati verranno usati solo per contattarti.</p>
               </form>
             </div>
           </div>
-          <div className="mt-8 border-t border-[#efe6d6] pt-6 text-center text-sm text-[#55664a]">
+          <div className="mt-10 border-t border-white/10 pt-8 text-center text-sm text-[#d4c4a8]">
             <span>Powered by Next.js · Design inspired by bed-and-breakfast.it</span>
           </div>
         </div>
