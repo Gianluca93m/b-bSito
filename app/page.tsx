@@ -499,51 +499,53 @@ export default function Home() {
         </section>
 
         {/* Servizi */}
-        <section className="w-full max-w-6xl mx-auto mb-24 px-6">
-          <div className="text-center mb-12">
-            <h2 className="section-title">I nostri servizi</h2>
-            <p className="section-subtitle">Tutto quello che ti serve per una vacanza perfetta</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">📶</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">WiFi</span>
-              <span className="text-base text-[#4d5c3a]">Connessione veloce gratuita</span>
+        <section className="w-full bg-gradient-to-b from-[#fbfaf6] to-white py-16 sm:py-20 mb-0">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="section-title">I nostri servizi</h2>
+              <p className="section-subtitle">Tutto quello che ti serve per una vacanza perfetta</p>
             </div>
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">🚗</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Parcheggio</span>
-              <span className="text-base text-[#4d5c3a]">Privato e videosorvegliato</span>
-            </div>
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">🛎️</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Transfer</span>
-              <span className="text-base text-[#4d5c3a]">Navetta da/per aeroporto</span>
-            </div>
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">🐾</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Pet Friendly</span>
-              <span className="text-base text-[#4d5c3a]">Animali ammessi</span>
-            </div>
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">🥾</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Escursioni</span>
-              <span className="text-base text-[#4d5c3a]">Tour guidati tra ulivi e mare</span>
-            </div>
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">🚲</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Biciclette</span>
-              <span className="text-base text-[#4d5c3a]">Noleggio gratuito</span>
-            </div>
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">🏊‍♂️</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Piscina</span>
-              <span className="text-base text-[#4d5c3a]">Piscina panoramica</span>
-            </div>
-            <div className="card p-10 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">💆‍♀️</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Spa</span>
-              <span className="text-base text-[#4d5c3a]">Area benessere</span>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">📶</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">WiFi</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Connessione veloce gratuita</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">🚗</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Parcheggio</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Privato e videosorvegliato</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">🛎️</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Transfer</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Navetta da/per aeroporto</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">🐾</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Pet Friendly</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Animali ammessi</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">🥾</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Escursioni</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Tour guidati tra ulivi e mare</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">🚲</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Biciclette</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Noleggio gratuito</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">🏊‍♂️</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Piscina</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Piscina panoramica</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">💆‍♀️</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Spa</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Area benessere</span>
+              </div>
             </div>
           </div>
         </section>
