@@ -276,78 +276,111 @@ export default function Home() {
           </ul>
         </div>
       </nav>
-      {/* Hero section */}
-      <main className="pt-32 pb-12 px-4 flex flex-col items-center font-sans">
-        <section className="w-full flex flex-col items-center justify-center py-24 bg-cover bg-center rounded-2xl overflow-hidden mb-16" style={{backgroundImage: 'url(https://www.turismovieste.it/index/wp-content/uploads/2024/02/ostunialtramonto.jpg)'}}>
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative z-10 px-6 py-16 max-w-3xl w-full text-center hero-panel">
-            <h1 className="text-5xl md:text-7xl font-bold text-[#4d5c3a] mb-4 tracking-tight hero-title">Per un soggiorno da favola</h1>
-            <p className="text-xl text-[#4d5c3a] mb-8 opacity-90">Nel cuore di Ostuni, tra ulivi e mare Adriatico</p>
-            <form className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 bg-white rounded-xl shadow-xl px-6 py-6 border border-[#ececec]">
-              <div className="flex flex-col items-start w-full sm:w-auto">
-                <label htmlFor="checkin" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Check-in</label>
-                <input type="date" id="checkin" name="checkin" className="bg-[#f5f5f5] px-4 py-2.5 text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full sm:w-auto transition-all" placeholder="Check-in" />
+      {/* Hero section - Luxury Design */}
+      <main className="pt-0 pb-0 px-0 flex flex-col items-center font-sans">
+        <section className="w-full relative flex flex-col items-center justify-center min-h-[90vh] sm:min-h-screen bg-cover bg-center overflow-hidden" style={{backgroundImage: 'url(https://images.pexels.com/photos/19075385/pexels-photo-19075385.jpeg)', backgroundAttachment: 'fixed', backgroundSize: 'cover', backgroundPosition: 'center 30%'}}>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+
+          <div className="relative z-10 w-full h-full flex flex-col items-center justify-center px-4 sm:px-6 text-center">
+            <div className="max-w-3xl mx-auto space-y-4 sm:space-y-6 mb-12 sm:mb-16 fade-in-up">
+              <div className="inline-block">
+                <span className="text-[#bfae82] text-xs sm:text-sm font-bold uppercase tracking-widest">Lusso & Ospitalità</span>
               </div>
-              <div className="flex flex-col items-start w-full sm:w-auto">
-                <label htmlFor="checkout" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Check-out</label>
-                <input type="date" id="checkout" name="checkout" className="bg-[#f5f5f5] px-4 py-2.5 text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full sm:w-auto transition-all" placeholder="Check-out" />
+              <h1 className="hero-title font-serif font-bold">Vivi un soggiorno indimenticabile</h1>
+              <p className="hero-subtitle font-light">Nel cuore di Ostuni, dove il fascino della Puglia incontra l'eleganza moderna</p>
+            </div>
+
+            <div className="relative z-20 w-full max-w-4xl px-4 sm:px-6 mb-8">
+              <div className="hero-panel">
+                <form className="flex flex-col gap-5 w-full" onSubmit={(e) => e.preventDefault()}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="flex flex-col items-start">
+                      <label htmlFor="checkin" className="text-xs font-bold text-white uppercase tracking-wider mb-3">Check-in</label>
+                      <input type="date" id="checkin" name="checkin" className="w-full px-4 py-3.5 rounded-lg text-[#4d5c3a] placeholder-gray-400 font-medium" />
+                    </div>
+                    <div className="flex flex-col items-start">
+                      <label htmlFor="checkout" className="text-xs font-bold text-white uppercase tracking-wider mb-3">Check-out</label>
+                      <input type="date" id="checkout" name="checkout" className="w-full px-4 py-3.5 rounded-lg text-[#4d5c3a] placeholder-gray-400 font-medium" />
+                    </div>
+                    <div className="flex flex-col items-start">
+                      <label htmlFor="guests" className="text-xs font-bold text-white uppercase tracking-wider mb-3">Ospiti</label>
+                      <input type="number" id="guests" name="guests" min="1" max="10" defaultValue="2" className="w-full px-4 py-3.5 rounded-lg text-[#4d5c3a] placeholder-gray-400 font-medium" />
+                    </div>
+                    <div className="flex flex-col items-start justify-end">
+                      <button type="submit" className="btn-primary w-full py-3.5">
+                        Prenota Ora
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
-              <div className="flex flex-col items-start w-full sm:w-auto">
-                <label htmlFor="guests" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Ospiti</label>
-                <input type="number" id="guests" name="guests" min="1" max="10" className="bg-[#f5f5f5] px-4 py-2.5 text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full sm:w-auto transition-all" placeholder="2" />
+            </div>
+
+            <div className="relative z-20 flex items-center gap-8 text-white text-sm mt-8">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">⭐</span>
+                <span className="hidden sm:inline">5.0 · 500+ Recensioni</span>
               </div>
-              <button type="submit" className="btn-primary font-semibold px-8 py-2.5 rounded-lg shadow-lg hover:shadow-xl text-base w-full sm:w-auto">
-                Cerca disponibilità
-              </button>
-            </form>
+              <div className="w-px h-6 bg-white/30"></div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🏆</span>
+                <span className="hidden sm:inline">Best B&B 2024</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+            <div className="text-white/60 hover:text-white transition-colors cursor-pointer text-3xl">↓</div>
           </div>
         </section>
 
         {/* Highlights / Trust badges */}
-        <section className="w-full max-w-6xl mx-auto mb-20 px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="highlight-card flex flex-col items-center text-center gap-5">
-              <div className="badge-circle">
-                <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                  <path d="M21 11.5L12 2 2 12l9 9 10-9.5zM11 7a2 2 0 110-4 2 2 0 010 4z" />
-                </svg>
+        <section className="w-full bg-gradient-to-b from-white to-[#fbfaf6] py-16 sm:py-20 mb-0">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              <div className="highlight-card flex flex-col items-center text-center gap-5 transform transition-all duration-300 hover:scale-105">
+                <div className="badge-circle">
+                  <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M21 11.5L12 2 2 12l9 9 10-9.5zM11 7a2 2 0 110-4 2 2 0 010 4z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="high-title">Miglior prezzo garantito</h4>
+                  <p className="high-desc mt-2">Prenota direttamente per le migliori tariffe disponibili.</p>
+                </div>
               </div>
-              <div>
-                <h4 className="high-title">Miglior prezzo garantito</h4>
-                <p className="high-desc mt-2">Prenota direttamente per le migliori tariffe disponibili.</p>
+              <div className="highlight-card flex flex-col items-center text-center gap-5 transform transition-all duration-300 hover:scale-105">
+                <div className="badge-circle">
+                  <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M12 6V3L8 7l4 4V8c2.761 0 5 2.239 5 5 0 .637-.113 1.244-.318 1.797l1.518 1.518C18.83 15.079 19 14.061 19 13c0-3.866-3.134-7-7-7zM6.318 5.683L4.8 4.165C3.17 5.794 2 8.255 2 11c0 3.866 3.134 7 7 7v3l4-4-4-4v3c-2.761 0-5-2.239-5-5 0-.637.113-1.244.318-1.797z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="high-title">Cancellazione flessibile</h4>
+                  <p className="high-desc mt-2">Cancella gratuitamente fino a 48 ore prima dell'arrivo.</p>
+                </div>
               </div>
-            </div>
-            <div className="highlight-card flex flex-col items-center text-center gap-5">
-              <div className="badge-circle">
-                <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                  <path d="M12 6V3L8 7l4 4V8c2.761 0 5 2.239 5 5 0 .637-.113 1.244-.318 1.797l1.518 1.518C18.83 15.079 19 14.061 19 13c0-3.866-3.134-7-7-7zM6.318 5.683L4.8 4.165C3.17 5.794 2 8.255 2 11c0 3.866 3.134 7 7 7v3l4-4-4-4v3c-2.761 0-5-2.239-5-5 0-.637.113-1.244.318-1.797z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="high-title">Cancellazione flessibile</h4>
-                <p className="high-desc mt-2">Cancella gratuitamente fino a 48 ore prima dell'arrivo.</p>
-              </div>
-            </div>
-            <div className="highlight-card flex flex-col items-center text-center gap-5">
-              <div className="badge-circle">
-                <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                  <path d="M12 2c1.657 0 3 1.79 3 4s-1.343 4-3 4-3-1.79-3-4 1.343-4 3-4zm6.5 6c1.38 0 2.5 1.343 2.5 3s-1.12 3-2.5 3-2.5-1.343-2.5-3 1.12-3 2.5-3zM5.5 8c1.38 0 2.5 1.343 2.5 3S6.88 14 5.5 14 3 12.657 3 11s1.12-3 2.5-3zM12 10c3.866 0 7 3.134 7 7 0 0-3 3-7 3s-7-3-7-3c0-3.866 3.134-7 7-7z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="high-title">Family & pet friendly</h4>
-                <p className="high-desc mt-2">Spazi e servizi pensati per famiglie e animali domestici.</p>
+              <div className="highlight-card flex flex-col items-center text-center gap-5 transform transition-all duration-300 hover:scale-105">
+                <div className="badge-circle">
+                  <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M12 2c1.657 0 3 1.79 3 4s-1.343 4-3 4-3-1.79-3-4 1.343-4 3-4zm6.5 6c1.38 0 2.5 1.343 2.5 3s-1.12 3-2.5 3-2.5-1.343-2.5-3 1.12-3 2.5-3zM5.5 8c1.38 0 2.5 1.343 2.5 3S6.88 14 5.5 14 3 12.657 3 11s1.12-3 2.5-3zM12 10c3.866 0 7 3.134 7 7 0 0-3 3-7 3s-7-3-7-3c0-3.866 3.134-7 7-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="high-title">Family & pet friendly</h4>
+                  <p className="high-desc mt-2">Spazi e servizi pensati per famiglie e animali domestici.</p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Pacchetti - full width carousel */}
-        <section id="pacchetti" className="carousel-bleed w-screen">
+        <section id="pacchetti" className="carousel-bleed w-screen bg-gradient-to-b from-white via-white to-[#f9f8f5]">
           <div className="carousel-wrapper">
-            <div className="text-center mb-8 px-6 max-w-6xl mx-auto">
-              <h2 className="section-title">Pacchetti promozionali</h2>
-              <p className="section-subtitle">Scopri le nostre offerte speciali per il tuo soggiorno</p>
+            <div className="text-center mb-12 sm:mb-16 px-6 max-w-6xl mx-auto">
+              <h2 className="section-title text-3xl sm:text-4xl">Le nostre esperienze esclusive</h2>
+              <p className="section-subtitle mt-3">Pacchetti curati per offrire momenti indimenticabili</p>
             </div>
 
             <div
@@ -360,36 +393,48 @@ export default function Home() {
                 {packagesList.map((p, idx) => {
                   const centerIndex = carouselIndex + Math.floor(visibleCount / 2)
                   const isActive = idx === centerIndex
+                  const images = [
+                    'https://images.pexels.com/photos/2598638/pexels-photo-2598638.jpeg',
+                    'https://images.pexels.com/photos/6466288/pexels-photo-6466288.jpeg',
+                    'https://images.pexels.com/photos/6466283/pexels-photo-6466283.jpeg',
+                    'https://images.pexels.com/photos/19075385/pexels-photo-19075385.jpeg',
+                  ]
+                  const imgUrl = images[idx % images.length]
                   return (
-                    <article key={p.id} className={`carousel-item relative card p-0 flex flex-col overflow-hidden ${isActive ? 'is-active' : ''}`}>
-                    <div className="w-full h-56 relative overflow-hidden">
-                      <img src={`https://picsum.photos/seed/pacchetto-${p.id}/900/600`} alt={p.title} className="object-cover w-full h-full transition-transform duration-500 hover:scale-110" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                      <span className="absolute top-4 right-4 bg-[#bfae82] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">OFFERTA</span>
+                    <article key={p.id} className={`carousel-item relative card p-0 flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ${isActive ? 'is-active' : ''}`}>
+                    <div className="relative w-full h-64 sm:h-72 overflow-hidden bg-gray-200">
+                      <img src={imgUrl} alt={p.title} className="object-cover w-full h-full transition-transform duration-700 hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+                      <span className="absolute top-4 right-4 bg-gradient-to-r from-[#bfae82] to-[#a88f5f] text-white text-xs font-bold px-4 py-2 rounded-full shadow-xl uppercase tracking-wider">Offerta Speciale</span>
                     </div>
-                    <div className="p-6 flex flex-col gap-4 flex-1">
-                      <h3 className="text-xl font-bold text-[#4d5c3a]">{p.title}</h3>
-                      <ul className="text-[#4d5c3a] text-sm space-y-2">
-                        <li className="flex items-center gap-2">
-                          <span className="text-[#bfae82] font-bold">✓</span>
-                          <span>Notte confortevole</span>
+                    <div className="p-6 sm:p-8 flex flex-col gap-5 flex-1">
+                      <div>
+                        <h3 className="text-2xl font-bold text-[#4d5c3a] mb-2">{p.title}</h3>
+                        <p className="text-sm text-[#6b7460]">Esperienza esclusiva per il tuo soggiorno</p>
+                      </div>
+                      <ul className="text-[#4d5c3a] text-sm space-y-2.5 flex-1">
+                        <li className="flex items-center gap-3">
+                          <span className="text-lg text-[#bfae82]">✨</span>
+                          <span className="font-medium">Stanza lussuosa con vista</span>
                         </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-[#bfae82] font-bold">✓</span>
-                          <span>Colazione inclusa</span>
+                        <li className="flex items-center gap-3">
+                          <span className="text-lg text-[#bfae82]">☕</span>
+                          <span className="font-medium">Colazione gourmet</span>
                         </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-[#bfae82] font-bold">✓</span>
-                          <span>Servizi dedicati</span>
+                        <li className="flex items-center gap-3">
+                          <span className="text-lg text-[#bfae82]">🎁</span>
+                          <span className="font-medium">Servizi esclusivi</span>
                         </li>
                       </ul>
-                      <div className="flex items-center gap-3 mt-auto pt-2">
-                        <span className="text-3xl font-bold text-[#bfae82]">{p.price}</span>
-                        <span className="text-xs text-[#6b7460] font-medium">per notte</span>
+                      <div className="border-t border-[#ececec] pt-5">
+                        <div className="flex items-baseline gap-2 mb-5">
+                          <span className="text-4xl font-bold text-[#bfae82]">{p.price}</span>
+                          <span className="text-sm text-[#6b7460] font-medium">per notte</span>
+                        </div>
+                        <button className="btn-primary w-full py-3.5 text-sm font-bold">
+                          Scopri di più
+                        </button>
                       </div>
-                      <button className="btn-primary font-semibold px-4 py-2.5 rounded-lg shadow-md hover:shadow-lg text-sm w-full transition-all">
-                        Vedi dettagli
-                      </button>
                     </div>
                     </article>
                   )
@@ -465,98 +510,103 @@ export default function Home() {
         <Gallery />
 
         {/* Staff */}
-        <section className="w-full max-w-6xl mx-auto mb-24 px-6">
-          <div className="text-center mb-12">
-            <h2 className="section-title">Il nostro team</h2>
-            <p className="section-subtitle">Persone appassionate al tuo benessere</p>
-          </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
-          <div className="card p-8 flex flex-col items-center min-h-[300px]">
-              <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Staff" className="rounded-full w-28 h-28 border border-[#ececec] shadow-lg mb-4" />
-              <span className="font-bold text-[#4d5c3a] text-2xl">Anna</span>
-              <span className="text-base text-[#bfae82] mb-2">Proprietaria</span>
-              <p className="text-[#4d5c3a] text-lg text-center">Accoglienza e cura degli ospiti sono la sua passione.</p>
+        <section className="w-full bg-white py-16 sm:py-20 mb-0">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="section-title">Il nostro team</h2>
+              <p className="section-subtitle">Persone appassionate al tuo benessere</p>
             </div>
-            <div className="card p-8 flex flex-col items-center min-h-[300px]">
-              <img src="https://randomuser.me/api/portraits/men/43.jpg" alt="Staff" className="rounded-full w-28 h-28 border border-[#ececec] shadow-lg mb-4" />
-              <span className="font-bold text-[#4d5c3a] text-2xl">Luca</span>
-              <span className="text-base text-[#bfae82] mb-2">Chef</span>
-              <p className="text-[#4d5c3a] text-lg text-center">Specialità pugliesi e colazioni indimenticabili.</p>
-            </div>
-            <div className="card p-8 flex flex-col items-center min-h-[300px]">
-              <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Staff" className="rounded-full w-28 h-28 border border-[#ececec] shadow-lg mb-4" />
-              <span className="font-bold text-[#4d5c3a] text-2xl">Sara</span>
-              <span className="text-base text-[#bfae82] mb-2">Reception</span>
-              <p className="text-[#4d5c3a] text-lg text-center">Sempre pronta a consigliare le migliori escursioni.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              <div className="card p-6 sm:p-8 flex flex-col items-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Anna, proprietaria" className="rounded-full w-32 h-32 sm:w-36 sm:h-36 border-4 border-[#bfae82] shadow-lg mb-6 object-cover" />
+                <span className="font-bold text-[#4d5c3a] text-2xl sm:text-3xl">Anna</span>
+                <span className="text-base text-[#bfae82] font-semibold mb-3">Proprietaria</span>
+                <p className="text-[#4d5c3a] text-center leading-relaxed">Accoglienza e cura degli ospiti sono la sua passione.</p>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <img src="https://randomuser.me/api/portraits/men/43.jpg" alt="Luca, chef" className="rounded-full w-32 h-32 sm:w-36 sm:h-36 border-4 border-[#bfae82] shadow-lg mb-6 object-cover" />
+                <span className="font-bold text-[#4d5c3a] text-2xl sm:text-3xl">Luca</span>
+                <span className="text-base text-[#bfae82] font-semibold mb-3">Chef</span>
+                <p className="text-[#4d5c3a] text-center leading-relaxed">Specialità pugliesi e colazioni indimenticabili.</p>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sara, reception" className="rounded-full w-32 h-32 sm:w-36 sm:h-36 border-4 border-[#bfae82] shadow-lg mb-6 object-cover" />
+                <span className="font-bold text-[#4d5c3a] text-2xl sm:text-3xl">Sara</span>
+                <span className="text-base text-[#bfae82] font-semibold mb-3">Reception</span>
+                <p className="text-[#4d5c3a] text-center leading-relaxed">Sempre pronta a consigliare le migliori escursioni.</p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Servizi */}
-        <section className="w-full max-w-6xl mx-auto mb-24 px-6">
-          <div className="text-center mb-12">
-            <h2 className="section-title">I nostri servizi</h2>
-            <p className="section-subtitle">Tutto quello che ti serve per una vacanza perfetta</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">📶</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">WiFi</span>
-              <span className="text-base text-[#4d5c3a]">Connessione veloce gratuita</span>
+        <section className="w-full bg-gradient-to-b from-[#fbfaf6] to-white py-16 sm:py-20 mb-0">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="section-title">I nostri servizi</h2>
+              <p className="section-subtitle">Tutto quello che ti serve per una vacanza perfetta</p>
             </div>
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">🚗</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Parcheggio</span>
-              <span className="text-base text-[#4d5c3a]">Privato e videosorvegliato</span>
-            </div>
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">🛎️</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Transfer</span>
-              <span className="text-base text-[#4d5c3a]">Navetta da/per aeroporto</span>
-            </div>
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">🐾</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Pet Friendly</span>
-              <span className="text-base text-[#4d5c3a]">Animali ammessi</span>
-            </div>
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">🥾</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Escursioni</span>
-              <span className="text-base text-[#4d5c3a]">Tour guidati tra ulivi e mare</span>
-            </div>
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">🚲</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Biciclette</span>
-              <span className="text-base text-[#4d5c3a]">Noleggio gratuito</span>
-            </div>
-            <div className="card p-8 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">🏊‍♂️</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Piscina</span>
-              <span className="text-base text-[#4d5c3a]">Piscina panoramica</span>
-            </div>
-            <div className="card p-10 flex flex-col items-center gap-4 min-h-[180px]">
-              <span className="text-4xl text-[#bfae82]">💆‍♀️</span>
-              <span className="font-bold text-[#4d5c3a] text-xl">Spa</span>
-              <span className="text-base text-[#4d5c3a]">Area benessere</span>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">📶</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">WiFi</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Connessione veloce gratuita</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">🚗</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Parcheggio</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Privato e videosorvegliato</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">🛎️</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Transfer</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Navetta da/per aeroporto</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">🐾</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Pet Friendly</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Animali ammessi</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">🥾</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Escursioni</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Tour guidati tra ulivi e mare</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">🚲</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Biciclette</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Noleggio gratuito</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">🏊‍♂️</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Piscina</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Piscina panoramica</span>
+              </div>
+              <div className="card p-6 sm:p-8 flex flex-col items-center gap-4 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
+                <span className="text-5xl sm:text-6xl">💆‍♀️</span>
+                <span className="font-bold text-[#4d5c3a] text-lg sm:text-xl">Spa</span>
+                <span className="text-sm sm:text-base text-[#4d5c3a] text-center">Area benessere</span>
+              </div>
             </div>
           </div>
         </section>
 
         {/* FAQ */}
-        <section className="w-full max-w-6xl mx-auto mb-24 px-6">
-          <div className="text-center mb-12">
-            <h2 className="section-title">Domande frequenti</h2>
-            <p className="section-subtitle">Risposte alle domande più comuni</p>
-          </div>
-          <div className="space-y-4">
-            {/* Accessible accordion: uses local state to control open panel for keyboard/screen-reader friendliness */}
-            {[
-              { q: "Qual è l'orario del check-in e check-out?", a: "Check-in dalle 15:00, check-out entro le 11:00. Possibilità di deposito bagagli." },
-              { q: "Accettate animali?", a: "Sì, siamo pet friendly (alcune regole e tariffe possono applicarsi)." },
-              { q: "C'è parcheggio?", a: "Sì, parcheggio privato incluso nella struttura." },
-            ].map((item, idx) => (
-              <AccordionItem key={idx} index={idx} question={item.q} answer={item.a} />
-            ))}
+        <section className="w-full bg-white py-16 sm:py-20 mb-0">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="section-title">Domande frequenti</h2>
+              <p className="section-subtitle">Risposte alle domande più comuni</p>
+            </div>
+            <div className="space-y-3 sm:space-y-4">
+              {[
+                { q: "Qual è l'orario del check-in e check-out?", a: "Check-in dalle 15:00, check-out entro le 11:00. Possibilità di deposito bagagli." },
+                { q: "Accettate animali?", a: "Sì, siamo pet friendly (alcune regole e tariffe possono applicarsi)." },
+                { q: "C'è parcheggio?", a: "Sì, parcheggio privato incluso nella struttura." },
+              ].map((item, idx) => (
+                <AccordionItem key={idx} index={idx} question={item.q} answer={item.a} />
+              ))}
+            </div>
           </div>
         </section>
         {/* Newsletter */}
