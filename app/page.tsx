@@ -276,32 +276,61 @@ export default function Home() {
           </ul>
         </div>
       </nav>
-      {/* Hero section */}
-      <main className="pt-20 sm:pt-32 pb-12 px-4 flex flex-col items-center font-sans">
-        <section className="w-full flex flex-col items-center justify-center py-12 sm:py-24 bg-cover bg-center bg-fixed rounded-xl sm:rounded-2xl overflow-hidden mb-12 sm:mb-16 min-h-[400px] sm:min-h-[500px]" style={{backgroundImage: 'url(https://www.turismovieste.it/index/wp-content/uploads/2024/02/ostunialtramonto.jpg)', backgroundAttachment: 'scroll', backgroundSize: 'cover', backgroundPosition: 'center'}}>
-          <div className="absolute inset-0 bg-black/25 sm:bg-black/20"></div>
-          <div className="relative z-10 px-4 sm:px-6 py-8 sm:py-16 w-full max-w-2xl sm:max-w-3xl text-center hero-panel">
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#4d5c3a] mb-3 sm:mb-4 tracking-tight hero-title leading-tight">Per un soggiorno da favola</h1>
-            <p className="text-base sm:text-lg md:text-xl text-[#4d5c3a] mb-6 sm:mb-8 opacity-90">Nel cuore di Ostuni, tra ulivi e mare Adriatico</p>
-            <form className="flex flex-col gap-4 bg-white rounded-lg sm:rounded-xl shadow-xl px-4 sm:px-6 py-5 sm:py-6 border border-[#ececec] w-full">
-              <div className="flex flex-col sm:flex-row gap-4 w-full">
-                <div className="flex flex-col items-start w-full sm:flex-1">
-                  <label htmlFor="checkin" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Check-in</label>
-                  <input type="date" id="checkin" name="checkin" className="bg-[#f5f5f5] px-3 sm:px-4 py-3 text-sm sm:text-base text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full transition-all" placeholder="Check-in" />
-                </div>
-                <div className="flex flex-col items-start w-full sm:flex-1">
-                  <label htmlFor="checkout" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Check-out</label>
-                  <input type="date" id="checkout" name="checkout" className="bg-[#f5f5f5] px-3 sm:px-4 py-3 text-sm sm:text-base text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full transition-all" placeholder="Check-out" />
-                </div>
-                <div className="flex flex-col items-start w-full sm:w-24">
-                  <label htmlFor="guests" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Ospiti</label>
-                  <input type="number" id="guests" name="guests" min="1" max="10" className="bg-[#f5f5f5] px-3 sm:px-4 py-3 text-sm sm:text-base text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full transition-all" placeholder="2" />
-                </div>
+      {/* Hero section - Luxury Design */}
+      <main className="pt-0 pb-0 px-0 flex flex-col items-center font-sans">
+        <section className="w-full relative flex flex-col items-center justify-center min-h-[90vh] sm:min-h-screen bg-cover bg-center overflow-hidden" style={{backgroundImage: 'url(https://images.pexels.com/photos/19075385/pexels-photo-19075385.jpeg)', backgroundAttachment: 'fixed', backgroundSize: 'cover', backgroundPosition: 'center 30%'}}>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+
+          <div className="relative z-10 w-full h-full flex flex-col items-center justify-center px-4 sm:px-6 text-center">
+            <div className="max-w-3xl mx-auto space-y-4 sm:space-y-6 mb-12 sm:mb-16 fade-in-up">
+              <div className="inline-block">
+                <span className="text-[#bfae82] text-xs sm:text-sm font-bold uppercase tracking-widest">Lusso & Ospitalità</span>
               </div>
-              <button type="submit" className="btn-primary font-semibold px-6 sm:px-8 py-3 sm:py-3 rounded-lg shadow-lg hover:shadow-xl text-sm sm:text-base w-full transition-all">
-                Cerca disponibilità
-              </button>
-            </form>
+              <h1 className="hero-title font-serif font-bold">Vivi un soggiorno indimenticabile</h1>
+              <p className="hero-subtitle font-light">Nel cuore di Ostuni, dove il fascino della Puglia incontra l'eleganza moderna</p>
+            </div>
+
+            <div className="relative z-20 w-full max-w-4xl px-4 sm:px-6 mb-8">
+              <div className="hero-panel">
+                <form className="flex flex-col gap-5 w-full" onSubmit={(e) => e.preventDefault()}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="flex flex-col items-start">
+                      <label htmlFor="checkin" className="text-xs font-bold text-white uppercase tracking-wider mb-3">Check-in</label>
+                      <input type="date" id="checkin" name="checkin" className="w-full px-4 py-3.5 rounded-lg text-[#4d5c3a] placeholder-gray-400 font-medium" />
+                    </div>
+                    <div className="flex flex-col items-start">
+                      <label htmlFor="checkout" className="text-xs font-bold text-white uppercase tracking-wider mb-3">Check-out</label>
+                      <input type="date" id="checkout" name="checkout" className="w-full px-4 py-3.5 rounded-lg text-[#4d5c3a] placeholder-gray-400 font-medium" />
+                    </div>
+                    <div className="flex flex-col items-start">
+                      <label htmlFor="guests" className="text-xs font-bold text-white uppercase tracking-wider mb-3">Ospiti</label>
+                      <input type="number" id="guests" name="guests" min="1" max="10" defaultValue="2" className="w-full px-4 py-3.5 rounded-lg text-[#4d5c3a] placeholder-gray-400 font-medium" />
+                    </div>
+                    <div className="flex flex-col items-start justify-end">
+                      <button type="submit" className="btn-primary w-full py-3.5">
+                        Prenota Ora
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div className="relative z-20 flex items-center gap-8 text-white text-sm mt-8">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">⭐</span>
+                <span className="hidden sm:inline">5.0 · 500+ Recensioni</span>
+              </div>
+              <div className="w-px h-6 bg-white/30"></div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🏆</span>
+                <span className="hidden sm:inline">Best B&B 2024</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+            <div className="text-white/60 hover:text-white transition-colors cursor-pointer text-3xl">↓</div>
           </div>
         </section>
 
@@ -699,7 +728,7 @@ export default function Home() {
 
                 <div>
                   <div className="font-semibold text-white">Orari</div>
-                  <div className="text-sm text-[#d4c4a8]">Reception: 08:00 — 22:00 �� Check-in 15:00 · Check-out 11:00</div>
+                  <div className="text-sm text-[#d4c4a8]">Reception: 08:00 — 22:00 · Check-in 15:00 · Check-out 11:00</div>
                 </div>
 
                 <div className="flex items-center gap-3 mt-4">
