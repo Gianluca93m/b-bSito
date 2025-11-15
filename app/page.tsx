@@ -306,39 +306,41 @@ export default function Home() {
         </section>
 
         {/* Highlights / Trust badges */}
-        <section className="w-full max-w-6xl mx-auto mb-20 px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="highlight-card flex flex-col items-center text-center gap-5">
-              <div className="badge-circle">
-                <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                  <path d="M21 11.5L12 2 2 12l9 9 10-9.5zM11 7a2 2 0 110-4 2 2 0 010 4z" />
-                </svg>
+        <section className="w-full bg-gradient-to-b from-white to-[#fbfaf6] py-16 sm:py-20 mb-0">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              <div className="highlight-card flex flex-col items-center text-center gap-5 transform transition-all duration-300 hover:scale-105">
+                <div className="badge-circle">
+                  <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M21 11.5L12 2 2 12l9 9 10-9.5zM11 7a2 2 0 110-4 2 2 0 010 4z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="high-title">Miglior prezzo garantito</h4>
+                  <p className="high-desc mt-2">Prenota direttamente per le migliori tariffe disponibili.</p>
+                </div>
               </div>
-              <div>
-                <h4 className="high-title">Miglior prezzo garantito</h4>
-                <p className="high-desc mt-2">Prenota direttamente per le migliori tariffe disponibili.</p>
+              <div className="highlight-card flex flex-col items-center text-center gap-5 transform transition-all duration-300 hover:scale-105">
+                <div className="badge-circle">
+                  <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M12 6V3L8 7l4 4V8c2.761 0 5 2.239 5 5 0 .637-.113 1.244-.318 1.797l1.518 1.518C18.83 15.079 19 14.061 19 13c0-3.866-3.134-7-7-7zM6.318 5.683L4.8 4.165C3.17 5.794 2 8.255 2 11c0 3.866 3.134 7 7 7v3l4-4-4-4v3c-2.761 0-5-2.239-5-5 0-.637.113-1.244.318-1.797z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="high-title">Cancellazione flessibile</h4>
+                  <p className="high-desc mt-2">Cancella gratuitamente fino a 48 ore prima dell'arrivo.</p>
+                </div>
               </div>
-            </div>
-            <div className="highlight-card flex flex-col items-center text-center gap-5">
-              <div className="badge-circle">
-                <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                  <path d="M12 6V3L8 7l4 4V8c2.761 0 5 2.239 5 5 0 .637-.113 1.244-.318 1.797l1.518 1.518C18.83 15.079 19 14.061 19 13c0-3.866-3.134-7-7-7zM6.318 5.683L4.8 4.165C3.17 5.794 2 8.255 2 11c0 3.866 3.134 7 7 7v3l4-4-4-4v3c-2.761 0-5-2.239-5-5 0-.637.113-1.244.318-1.797z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="high-title">Cancellazione flessibile</h4>
-                <p className="high-desc mt-2">Cancella gratuitamente fino a 48 ore prima dell'arrivo.</p>
-              </div>
-            </div>
-            <div className="highlight-card flex flex-col items-center text-center gap-5">
-              <div className="badge-circle">
-                <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                  <path d="M12 2c1.657 0 3 1.79 3 4s-1.343 4-3 4-3-1.79-3-4 1.343-4 3-4zm6.5 6c1.38 0 2.5 1.343 2.5 3s-1.12 3-2.5 3-2.5-1.343-2.5-3 1.12-3 2.5-3zM5.5 8c1.38 0 2.5 1.343 2.5 3S6.88 14 5.5 14 3 12.657 3 11s1.12-3 2.5-3zM12 10c3.866 0 7 3.134 7 7 0 0-3 3-7 3s-7-3-7-3c0-3.866 3.134-7 7-7z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="high-title">Family & pet friendly</h4>
-                <p className="high-desc mt-2">Spazi e servizi pensati per famiglie e animali domestici.</p>
+              <div className="highlight-card flex flex-col items-center text-center gap-5 transform transition-all duration-300 hover:scale-105">
+                <div className="badge-circle">
+                  <svg className="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M12 2c1.657 0 3 1.79 3 4s-1.343 4-3 4-3-1.79-3-4 1.343-4 3-4zm6.5 6c1.38 0 2.5 1.343 2.5 3s-1.12 3-2.5 3-2.5-1.343-2.5-3 1.12-3 2.5-3zM5.5 8c1.38 0 2.5 1.343 2.5 3S6.88 14 5.5 14 3 12.657 3 11s1.12-3 2.5-3zM12 10c3.866 0 7 3.134 7 7 0 0-3 3-7 3s-7-3-7-3c0-3.866 3.134-7 7-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="high-title">Family & pet friendly</h4>
+                  <p className="high-desc mt-2">Spazi e servizi pensati per famiglie e animali domestici.</p>
+                </div>
               </div>
             </div>
           </div>
