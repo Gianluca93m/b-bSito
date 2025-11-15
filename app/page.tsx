@@ -276,27 +276,28 @@ export default function Home() {
           </ul>
         </div>
       </nav>
-      {/* Hero con ricerca */}
-      <main className="pt-32 pb-12 px-4 flex flex-col items-center min-h-screen font-sans">
-        {/* Hero con ricerca */}
-        <section className="w-full flex flex-col items-center justify-center py-20 bg-cover bg-center rounded-lg shadow-lg border border-[#ececec] mb-12" style={{backgroundImage: 'url(https://www.turismovieste.it/index/wp-content/uploads/2024/02/ostunialtramonto.jpg)'}}>
-          <div className="rounded-md px-8 py-10 shadow-md max-w-2xl w-full text-center hero-panel">
-            <h1 className="text-5xl md:text-6xl font-extrabold text-[#4d5c3a] mb-6 tracking-tight hero-title">Per un soggiorno da favola a Ostuni</h1>
-            <form className="flex flex-row flex-wrap items-center justify-center gap-6 bg-[#f7f7f7] rounded-xl shadow px-8 py-6 border border-[#ececec] max-w-2xl w-full mx-auto">
-              <div className="flex flex-col items-start w-40">
-                <label htmlFor="checkin" className="text-xs font-semibold text-[#4d5c3a] mb-1 ml-1">Check-in</label>
-                <input type="date" id="checkin" name="checkin" className="bg-white px-3 py-2 text-[#4d5c3a] text-lg rounded border border-[#ececec] focus:outline-none w-full" placeholder="Check-in" />
+      {/* Hero section */}
+      <main className="pt-32 pb-12 px-4 flex flex-col items-center font-sans">
+        <section className="w-full flex flex-col items-center justify-center py-24 bg-cover bg-center rounded-2xl overflow-hidden mb-16" style={{backgroundImage: 'url(https://www.turismovieste.it/index/wp-content/uploads/2024/02/ostunialtramonto.jpg)'}}>
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="relative z-10 px-6 py-16 max-w-3xl w-full text-center hero-panel">
+            <h1 className="text-5xl md:text-7xl font-bold text-[#4d5c3a] mb-4 tracking-tight hero-title">Per un soggiorno da favola</h1>
+            <p className="text-xl text-[#4d5c3a] mb-8 opacity-90">Nel cuore di Ostuni, tra ulivi e mare Adriatico</p>
+            <form className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 bg-white rounded-xl shadow-xl px-6 py-6 border border-[#ececec]">
+              <div className="flex flex-col items-start w-full sm:w-auto">
+                <label htmlFor="checkin" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Check-in</label>
+                <input type="date" id="checkin" name="checkin" className="bg-[#f5f5f5] px-4 py-2.5 text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full sm:w-auto transition-all" placeholder="Check-in" />
               </div>
-              <div className="flex flex-col items-start w-40">
-                <label htmlFor="checkout" className="text-xs font-semibold text-[#4d5c3a] mb-1 ml-1">Check-out</label>
-                <input type="date" id="checkout" name="checkout" className="bg-white px-3 py-2 text-[#4d5c3a] text-lg rounded border border-[#ececec] focus:outline-none w-full" placeholder="Check-out" />
+              <div className="flex flex-col items-start w-full sm:w-auto">
+                <label htmlFor="checkout" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Check-out</label>
+                <input type="date" id="checkout" name="checkout" className="bg-[#f5f5f5] px-4 py-2.5 text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full sm:w-auto transition-all" placeholder="Check-out" />
               </div>
-              <div className="flex flex-col items-start w-40">
-                <label htmlFor="guests" className="text-xs font-semibold text-[#4d5c3a] mb-1 ml-1">Ospiti</label>
-                <input type="number" id="guests" name="guests" min="1" max="10" className="bg-white px-3 py-2 text-[#4d5c3a] text-lg rounded border border-[#ececec] focus:outline-none w-full" placeholder="2" />
+              <div className="flex flex-col items-start w-full sm:w-auto">
+                <label htmlFor="guests" className="text-xs font-semibold text-[#4d5c3a] mb-2 ml-1">Ospiti</label>
+                <input type="number" id="guests" name="guests" min="1" max="10" className="bg-[#f5f5f5] px-4 py-2.5 text-[#4d5c3a] rounded-lg border border-[#ececec] focus:outline-none focus:ring-2 focus:ring-[#bfae82] focus:border-transparent w-full sm:w-auto transition-all" placeholder="2" />
               </div>
-              <button type="submit" className="group transform transition-transform duration-300 group-hover:-rotate-3 group-focus:-rotate-3 btn-primary font-bold px-8 py-3 rounded-xl shadow transition text-lg">
-                <span className="inline-block transform transition-transform duration-300 group-hover:-rotate-6 group-focus:-rotate-6">Cerca</span>
+              <button type="submit" className="btn-primary font-semibold px-8 py-2.5 rounded-lg shadow-lg hover:shadow-xl text-base w-full sm:w-auto">
+                Cerca disponibilità
               </button>
             </form>
           </div>
